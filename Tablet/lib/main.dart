@@ -33,10 +33,10 @@ class Home extends StatelessWidget {
                 const Duration(seconds: 1),
                 builder: (context) {
                   return Text(
-                    formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]),
+                    formatDate(DateTime.now(), [mm, "월  ", dd, "일  ", HH, " : ", nn]),
                     style: const TextStyle(
-                      fontSize: 180,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 120,
+                      fontWeight: FontWeight.w500,
                     ),
                   );
                 },
