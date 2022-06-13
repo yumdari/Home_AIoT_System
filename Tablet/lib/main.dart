@@ -6,6 +6,8 @@ import 'package:date_format/date_format.dart';
 
 /* Weather */
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -83,9 +85,23 @@ class _WeatherState extends State<Weather> {
     permission = await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     print(position);
+    fetchData();
   }
+
+  void fetchData() async {
+    http.Response response = await http.get(
+        Uri.parse('https://samples.openweathermap.org/data/2.5/weather?'
+            'q=London&appid=b1b15e88fa797225412429c1c50c122a1'));
+    if (response.statusCode == 200) {
+      //print(response.body);
+      String jsonData = response.body;
+      var myJson = jsonDecode(jsonData);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 }
+
