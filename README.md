@@ -10,7 +10,7 @@
 |손혜수|LiDAR, OpenCV|
 
 ##  개발 일지
-22.06.13 Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic 
+22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic 
 
 ## 기술 스택
 
