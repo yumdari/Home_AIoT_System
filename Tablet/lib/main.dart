@@ -8,6 +8,7 @@ import 'package:date_format/date_format.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+//import 'package:weather_app';
 
 const apikey = '78875fa7b0b0cad43ec365684ab3eb1b';
 
@@ -77,8 +78,8 @@ class Weather extends StatefulWidget {
 
 class _WeatherState extends State<Weather> {
 
-  //double latitude2;
-  //double longitude2;
+  double latitude2 = 0;
+  double longitude2 = 0;
 
   @override
   void initState(){
@@ -89,23 +90,53 @@ class _WeatherState extends State<Weather> {
   void getLocation() async{
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    //latitude2 = position.latitude;
-    //longitude2 = position.longitude;
-    print(position);
-    fetchData();
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      latitude2 = position.latitude;
+      longitude2 = position.longitude;
+      //print(position);
+      print(latitude2);
+      print(longitude2);
+
+      String urlStr = 'https://api.openweathermap.org/data/3.0/onecall?lat=$latitude2&lon=$longitude2'
+          '&exclude=current&appid=$apikey';
+      http.Response response = await http.get(
+          Uri.parse(urlStr));
+
+      if (response.statusCode == 200) { /* Connected successfully */
+        print(response.body);
+        String jsonData = response.body;
+        //var myJson = jsonDecode(jsonData)['weather'][0]['description'];
+
+        var temp = jsonDecode(jsonData)['main']['temp']; // 어떤 타입 변수가 리턴될 지 몰라 var타입 선언
+        var desc = jsonDecode(jsonData)['weather'][0]['description'];
+        print(temp);
+        print(desc);
+
+      }
+      else{
+        print(response.statusCode);
+      }
+
+
+    }catch(e) {
+      print('Error : Internet connection problem');
+    }
+    //fetchData();
   }
 
+  /* JSON 데이터 수신 및 파싱 */
   void fetchData() async {
     http.Response response = await http.get(
         Uri.parse('https://samples.openweathermap.org/data/2.5/weather?'
             'q=London&appid=b1b15e88fa797225412429c1c50c122a1'));
-    if (response.statusCode == 200) { /* Connected */
+    if (response.statusCode == 200) { /* Connected successfully */
       //print(response.body);
       String jsonData = response.body;
       //var myJson = jsonDecode(jsonData)['weather'][0]['description'];
 
-      var temp = jsonDecode(jsonData)['main']['temp'];
+      var temp = jsonDecode(jsonData)['main']['temp']; // 어떤 타입 변수가 리턴될 지 몰라 var타입 선언
       var desc = jsonDecode(jsonData)['weather'][0]['description'];
       print(temp);
       print(desc);
