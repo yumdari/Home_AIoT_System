@@ -12,6 +12,7 @@
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
 22.06.13(윤건우) geolocator 패키지 -> 현재 위치 좌표 출력, http 패키지 -> json 로딩
+
 22.06.14(민동재) SQL SELECT QUERY문 작성 -> MariaDB Motorvalue 최신값 출력
 
 ## 기술 스택
