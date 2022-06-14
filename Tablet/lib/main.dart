@@ -9,6 +9,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+const apikey = '78875fa7b0b0cad43ec365684ab3eb1b';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -74,6 +76,10 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
+
+  //double latitude2;
+  //double longitude2;
+
   @override
   void initState(){
     super.initState();
@@ -84,6 +90,8 @@ class _WeatherState extends State<Weather> {
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    //latitude2 = position.latitude;
+    //longitude2 = position.longitude;
     print(position);
     fetchData();
   }
@@ -92,10 +100,19 @@ class _WeatherState extends State<Weather> {
     http.Response response = await http.get(
         Uri.parse('https://samples.openweathermap.org/data/2.5/weather?'
             'q=London&appid=b1b15e88fa797225412429c1c50c122a1'));
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200) { /* Connected */
       //print(response.body);
       String jsonData = response.body;
-      var myJson = jsonDecode(jsonData);
+      //var myJson = jsonDecode(jsonData)['weather'][0]['description'];
+
+      var temp = jsonDecode(jsonData)['main']['temp'];
+      var desc = jsonDecode(jsonData)['weather'][0]['description'];
+      print(temp);
+      print(desc);
+
+    }
+    else{
+      print(response.statusCode);
     }
   }
 
