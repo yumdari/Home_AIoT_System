@@ -99,8 +99,7 @@ class _WeatherState extends State<Weather> {
       print(latitude2);
       print(longitude2);
 
-      String urlStr = 'https://api.openweathermap.org/data/3.0/onecall?lat=$latitude2&lon=$longitude2'
-          '&exclude=current&appid=$apikey';
+      String urlStr = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude2&lon=$longitude2&appid=$apikey';
       http.Response response = await http.get(
           Uri.parse(urlStr));
 
