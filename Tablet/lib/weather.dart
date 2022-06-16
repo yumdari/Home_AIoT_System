@@ -28,13 +28,11 @@ class _WeatherState extends State<Weather> {
     super.initState();
     //print('test');
     getLocation();
+    while((latitude2 != 0) && (longitude2 != 0)){}
+    print('After while');
+    print(latitude2);
+    print(longitude2);
     fetchData();
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    super.setState(fn);
   }
 
   /* 위치 조회 */
@@ -47,8 +45,8 @@ class _WeatherState extends State<Weather> {
       latitude2 = position.latitude;
       longitude2 = position.longitude;
       //print(position);
-      print(latitude2);
-      print(longitude2);
+      //print(latitude2);
+      //print(longitude2);
     }catch(e) {
       print('Error : Internet connection problem');
     }
@@ -58,6 +56,7 @@ class _WeatherState extends State<Weather> {
   void fetchData() async {
     String urlStr = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude2&lon=$longitude2'
         '&exclude=current&appid=$apikey&units=metric';
+    print(urlStr);
     http.Response response = await http.get(
         Uri.parse(urlStr));
 
