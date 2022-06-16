@@ -19,13 +19,22 @@ class _WeatherState extends State<Weather> {
   double longitude2 = 0;
 
   String cityName = "";
+  //ValueNotifier<String> cityName = ValueNotifier('');
   double temp = 0.0;
+  int tempInt = 0;
 
   @override
   void initState(){
     super.initState();
+    //print('test');
     getLocation();
     fetchData();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
   }
 
   /* 위치 조회 */
@@ -48,7 +57,7 @@ class _WeatherState extends State<Weather> {
   /* JSON 데이터 수신 및 파싱 */
   void fetchData() async {
     String urlStr = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude2&lon=$longitude2'
-        '&exclude=current&appid=$apikey';
+        '&exclude=current&appid=$apikey&units=metric';
     http.Response response = await http.get(
         Uri.parse(urlStr));
 
@@ -57,10 +66,12 @@ class _WeatherState extends State<Weather> {
       String jsonData = response.body;
       //var myJson = jsonDecode(jsonData)['weather'][0]['description'];
 
-      temp = jsonDecode(jsonData)['main']['temp']; // 어떤 타입 변수가 리턴될 지 몰라 var타입 선언
+      temp = jsonDecode(jsonData)['main']['temp'];
+      tempInt = temp.round();
       cityName = jsonDecode(jsonData)['name'];
       print(temp);
       print(cityName);
+      setState(() { });
 
     }
     else{
@@ -75,19 +86,20 @@ class _WeatherState extends State<Weather> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Text(
-              'cityName',
+              '$cityName',
               style: TextStyle(
-                fontSize: 40.0
+                  fontSize: 50.0
               ),
             ),
             SizedBox(
-              width: 20.0,
+              width: 70.0,
             ),
             Text(
-              'temp',
+              '$tempInt'+'℃',
               style: TextStyle(
-                fontSize: 40.0
+                  fontSize: 50.0
               ),
             )
           ],

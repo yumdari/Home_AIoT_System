@@ -26,13 +26,14 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatelessWidget {
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Reminder Door'),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white70,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -56,7 +57,7 @@ class Home extends StatelessWidget {
             Container(
               child: Weather(),
               height: 100,
-              color: Colors.red,
+              //color: Colors.red,
             ),
             Container(
               height: 350,
