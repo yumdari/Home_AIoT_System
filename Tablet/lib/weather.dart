@@ -58,7 +58,7 @@ class _WeatherState extends State<Weather> {
 
       temp = jsonDecode(jsonData)['main']['temp'];
       tempInt = temp.round();
-      cityName = jsonDecode(jsonData)['name'];
+      cityName = jsonDecode(jsonData)['weather'][0]['main'];
       setState(() { });
     }
     else{
@@ -81,7 +81,7 @@ class _WeatherState extends State<Weather> {
               ),
             ),
             SizedBox(
-              width: 70.0,
+              width: 40.0,
             ),
             Text(
               '$tempInt'+'℃',
