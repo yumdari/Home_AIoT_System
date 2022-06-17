@@ -19,20 +19,14 @@ class _WeatherState extends State<Weather> {
   double longitude2 = 0;
 
   String cityName = "";
-  //ValueNotifier<String> cityName = ValueNotifier('');
   double temp = 0.0;
-  int tempInt = 0;
+  int tempInt = 0; // int형으로 변환하기 위한 변수
 
+  /* 페이지 열리면서 바로 실행 */
   @override
   void initState(){
     super.initState();
-    //print('test');
     getLocation();
-    while((latitude2 != 0) && (longitude2 != 0)){}
-    print('After while');
-    print(latitude2);
-    print(longitude2);
-    fetchData();
   }
 
   /* 위치 조회 */
@@ -44,34 +38,28 @@ class _WeatherState extends State<Weather> {
           desiredAccuracy: LocationAccuracy.high);
       latitude2 = position.latitude;
       longitude2 = position.longitude;
-      //print(position);
-      //print(latitude2);
-      //print(longitude2);
     }catch(e) {
       print('Error : Internet connection problem');
     }
+    fetchData();
   }
 
   /* JSON 데이터 수신 및 파싱 */
   void fetchData() async {
+    /* API 주소 */
     String urlStr = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude2&lon=$longitude2'
         '&exclude=current&appid=$apikey&units=metric';
-    print(urlStr);
     http.Response response = await http.get(
         Uri.parse(urlStr));
 
     if (response.statusCode == 200) { /* Connected successfully */
-      print(response.body);
+      print(response.body); // 수신받은 JSON 콘솔 출력
       String jsonData = response.body;
-      //var myJson = jsonDecode(jsonData)['weather'][0]['description'];
 
       temp = jsonDecode(jsonData)['main']['temp'];
       tempInt = temp.round();
       cityName = jsonDecode(jsonData)['name'];
-      print(temp);
-      print(cityName);
       setState(() { });
-
     }
     else{
       print(response.statusCode);
