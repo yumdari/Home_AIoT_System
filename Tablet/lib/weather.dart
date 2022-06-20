@@ -4,6 +4,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 const apikey = '78875fa7b0b0cad43ec365684ab3eb1b';
 
 class Weather extends StatefulWidget {
