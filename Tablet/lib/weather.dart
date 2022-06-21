@@ -21,14 +21,37 @@ class _WeatherState extends State<Weather> {
   double longitude2 = 0;
 
   String cityName = "";
+  //String strWeatherId = "";
+  int strWeatherId = 0;
+  String iconPath = "";
   double temp = 0.0;
   int tempInt = 0; // int형으로 변환하기 위한 변수
+
+
+
 
   /* 페이지 열리면서 바로 실행 */
   @override
   void initState(){
     super.initState();
     getLocation();
+  }
+
+  /* 날씨 아이콘 선택 */
+  String getWeatherIcon(int str_id){
+    //int id = int.parse(str_id);
+    int id = str_id;
+    if(id < 300) {
+      return 'svg/climacon-sun.svg';
+    } else if(id < 600) {
+      return 'svg/climacon-cloud_rain.svg';
+    } else if(id == 800) {
+      return 'svg/climacon-sun.svg';
+    } else if(id <= 804) {
+      return 'svg/climacon-cloud_sun.svg';
+    }
+
+    return 'svg/icon.svg';
   }
 
   /* 위치 조회 */
@@ -61,6 +84,8 @@ class _WeatherState extends State<Weather> {
       temp = jsonDecode(jsonData)['main']['temp'];
       tempInt = temp.round();
       cityName = jsonDecode(jsonData)['weather'][0]['main'];
+      strWeatherId = jsonDecode(jsonData)['weather'][0]['id'];
+      iconPath = getWeatherIcon(strWeatherId);
       setState(() { });
     }
     else{
@@ -75,13 +100,8 @@ class _WeatherState extends State<Weather> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Text(
-              '$cityName',
-              style: TextStyle(
-                  fontSize: 50.0
-              ),
-            ),
+            SvgPicture.asset('$iconPath',
+            color: Colors.black87),
             SizedBox(
               width: 40.0,
             ),
