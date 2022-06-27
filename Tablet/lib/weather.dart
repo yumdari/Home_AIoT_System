@@ -23,7 +23,7 @@ class _WeatherState extends State<Weather> {
   String cityName = "";
   //String strWeatherId = "";
   int strWeatherId = 0;
-  String iconPath = "";
+  String iconPath = "svg/day.svg"; // 초깃값
   double temp = 0.0;
   int tempInt = 0; // int형으로 변환하기 위한 변수
 
@@ -42,13 +42,13 @@ class _WeatherState extends State<Weather> {
     //int id = int.parse(str_id);
     int id = str_id;
     if(id < 300) {
-      return 'svg/climacon-sun.svg';
+      return 'svg/day.svg'; //climacon-sun
     } else if(id < 600) {
-      return 'svg/climacon-cloud_rain.svg';
+      return 'svg/day.svg'; //climacon-cloud_rain
     } else if(id == 800) {
-      return 'svg/climacon-sun.svg';
+      return 'svg/day.svg'; //climacon-sun
     } else if(id <= 804) {
-      return 'svg/climacon-cloud_sun.svg';
+      return 'svg/day.svg'; //climacon-cloud_sun
     }
 
     return 'svg/icon.svg';
@@ -86,6 +86,7 @@ class _WeatherState extends State<Weather> {
       cityName = jsonDecode(jsonData)['weather'][0]['main'];
       strWeatherId = jsonDecode(jsonData)['weather'][0]['id'];
       iconPath = getWeatherIcon(strWeatherId);
+      print(iconPath);
       setState(() { });
     }
     else{
@@ -101,7 +102,7 @@ class _WeatherState extends State<Weather> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset('$iconPath',
-            color: Colors.black87),
+            color: Colors.black38,),
             SizedBox(
               width: 40.0,
             ),
