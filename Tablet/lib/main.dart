@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tablet_app/userA.dart';
+import 'package:tablet_app/userB.dart';
 import 'package:tablet_app/weather.dart';
 
 /* Clock */
@@ -67,14 +69,23 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: 200,
                     width: 200,
-                    child: ElevatedButton(onPressed: (){}, child: Text("USER1"), style: ElevatedButton.styleFrom(
+                    child: ElevatedButton(onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => userA()),
+                      );
+                    }, child: Text("USER1"), style: ElevatedButton.styleFrom(
                       primary: Colors.orange
                     ),)
                   ),
                   SizedBox(
                       height: 200,
                       width: 200,
-                      child: ElevatedButton(onPressed: (){}, child: Text("USER2"), style: ElevatedButton.styleFrom(
+                      child: ElevatedButton(onPressed: (){
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>userB()),
+                        );
+                      }, child: Text("USER2"), style: ElevatedButton.styleFrom(
                         primary: Colors.teal
                       ),)
                   ),
