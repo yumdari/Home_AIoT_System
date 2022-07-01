@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tablet_app/userA.dart';
+import 'package:tablet_app/userB.dart';
 import 'package:tablet_app/weather.dart';
 
 /* Clock */
@@ -36,6 +38,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white70,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             SizedBox(
               height: 200,
@@ -60,8 +63,49 @@ class Home extends StatelessWidget {
               //color: Colors.red,
             ),
             Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: ElevatedButton(onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => userA()),
+                      );
+                    }, child: Text("USER1"), style: ElevatedButton.styleFrom(
+                      primary: Colors.orange
+                    ),)
+                  ),
+                  SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: ElevatedButton(onPressed: (){
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>userB()),
+                        );
+                      }, child: Text("USER2"), style: ElevatedButton.styleFrom(
+                        primary: Colors.teal
+                      ),)
+                  ),
+                  SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: ElevatedButton(onPressed: (){}, child: Text("USER3"), style: ElevatedButton.styleFrom(
+                        primary: Colors.brown
+                      ),)
+                  ),
+                  SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: ElevatedButton(onPressed: (){}, child: Text("USER4"),style: ElevatedButton.styleFrom(
+                        primary: Colors.purpleAccent
+                      ),)
+                  ),
+                ],
+              ),
               height: 350,
-              color: Colors.blue,
             ),
           ],
         ));
