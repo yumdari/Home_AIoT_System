@@ -10,11 +10,8 @@
 |손혜수|LiDAR, OpenCV|
 
 ##  개발 일지
-22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
-22.06.13(윤건우) geolocator 패키지 -> 현재 위치 좌표 출력, http 패키지 -> json 로딩   
-22.06.14(윤건우) API 획득 및 저장   
-22.06.14(민동재) SQL SELECT QUERY문 작성 -> MariaDB Motorvalue 최신값 출력   
-22.06.17(민동재) RaspberryPi -> Esp32 소켓 통신  
+22.06.17(민동재) RaspberryPi -> Esp32 소켓 통신   
+22.07.04(민동재) 수신값을 활용하여 서보모터 제어   
 
 ## 기술 스택
 
