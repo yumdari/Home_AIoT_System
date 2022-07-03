@@ -11,7 +11,8 @@
 
 ##  개발 일지 
 22.06.14(민동재) SQL SELECT QUERY문 작성 -> MariaDB Motorvalue 최신값 출력   
-22.06.17(민동재) RaspberryPi->Esp32 소켓 통신
+22.06.17(민동재) RaspberryPi->Esp32 소켓 통신   
+22.07.04(민동재) 서보모터 제어를 위한 insert문 추가
 
 ## 기술 스택
 
