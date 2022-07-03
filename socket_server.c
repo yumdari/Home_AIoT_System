@@ -70,12 +70,15 @@ void server_main(){
 int main(){
 	server_init();
 	MYSQL *conn;
+//	MYSQL *con;
 	MYSQL_RES *res_ptr;
 	MYSQL_ROW sqlrow;
 
 	int res;
+	int ins=0;
 
 	conn = mysql_init(NULL);
+//	con = mysql_init(NULL);
 	int sql_index, flag = 0;
 	char in_sql[200] = {0};
 
@@ -114,9 +117,11 @@ int main(){
 //		strcpy(buf2, sqlrow[0]);
 		send(dstSocket,buf2,sizeof(buf2),0);
 		printf("%s\n", buf2);
-		delay(500);
+		//delay(2000);
 
-
+		sprintf(in_sql, "insert into MotorControl(ID,CURTIME, CURDATE, Motorvalue) values (null, curtime(), curdate(), %d)", 0);
+		ins = mysql_query(conn, in_sql);
+		delay(1000);
 		close(dstSocket);
 	}
 close(srcSocket);
