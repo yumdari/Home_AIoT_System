@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +37,6 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white70,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
             SizedBox(
               height: 200,

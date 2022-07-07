@@ -53,8 +53,8 @@ class _WeatherState extends State<Weather> {
 
   /* 위치 조회 */
   void getLocation() async{
-    // LocationPermission permission;
-    //permission = await Geolocator.requestPermission();
+     LocationPermission permission;
+    permission = await Geolocator.requestPermission();
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);

@@ -40,6 +40,8 @@ dependencies:
   geolocator: ^8.2.1
   http: ^0.13.4
   flutter_svg: ^0.19.3
+  tcp_socket_connection: ^0.3.0
+  # web_socket_channel: ^2.2.0
 
 dev_dependencies:
   flutter_test:
