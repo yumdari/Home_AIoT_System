@@ -3,83 +3,67 @@ import 'package:flutter/material.dart';
 class userA extends StatelessWidget {
   const userA({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
         children: [
           Expanded(child: Container(
-            child: Row(
+            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: GridView.count(
+              crossAxisCount: 3,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               children: [
-                Expanded(child: Container(
-                  child: Column(
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
 
-                    children: [
-                      Expanded(child: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: ElevatedButton(onPressed: (){
-                        }, child: Text("USER1"), ),
-                        //color: Colors.black54,
-                      ),
-                      flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.amber,
-                      ),
-                        flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.blue,
-                      ),
-                        flex: 1,)
-                    ],
-                  ),
-                  color: Colors.teal,
+                  }, child: Text("item1"),),
                 ),
-                flex: 1,),
-                Expanded(child: Container(
-                  child: Column(
-                    children: [
-                      Expanded(child: Container(
-                        color: Colors.purpleAccent,
-                      ),
-                        flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.green,
-                      ),
-                        flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.white,
-                      ),
-                        flex: 1,)
-                    ],
-                  ),
-                  color: Colors.brown,
-                ),
-                  flex: 1,),
-                Expanded(child: Container(
-                  child: Column(
-                    children: [
-                      Expanded(child: Container(
-                        color: Colors.brown,
-                      ),
-                        flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.white12,
-                      ),
-                        flex: 1,),
-                      Expanded(child: Container(
-                        color: Colors.tealAccent,
-                      ),
-                        flex: 1,)
-                    ],
-                  ),
-                  color: Colors.deepOrange,
-                ),
-                  flex: 1,)
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
 
+                  }, child: Text("item2"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item3"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item4"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item5"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item6"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item7"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item8"),),
+                ),
+                SizedBox(
+                  child: ElevatedButton(onPressed: (){
+
+                  }, child: Text("item9"),),
+                ),
               ],
-            ),
-            color: Colors.red,
+                )
           ),
           flex: 7,),
           Expanded(child: Container(

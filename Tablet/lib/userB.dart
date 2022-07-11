@@ -10,6 +10,8 @@ class userB extends StatefulWidget {
 
 class _userBState extends State<userB> {
 
+  var buttonState_array = List<int>.filled(9, 0);
+
   TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5055);
   String message = "";
 
@@ -38,31 +40,69 @@ class _userBState extends State<userB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Row(
         children: [
-          SizedBox(
-            child: RaisedButton(
-              onPressed: (){
-                Navigator.pop(context);
-              },
-              child: Text('Go back'),
-            ),
+          Expanded(child: Container(
+              margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridView.count(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: [
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+                      if(buttonState_array[0])
+
+                    }, child: Text("item1"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item2"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item3"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item4"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item5"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item6"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item7"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item8"),),
+                  ),
+                  SizedBox(
+                    child: ElevatedButton(onPressed: (){
+
+                    }, child: Text("item9"),),
+                  ),
+                ],
+              )
           ),
-          SizedBox(
-            child: RaisedButton(
-              onPressed: (){
-                socketConnection.sendMessage('hello world');
-              },
-              child: Text('send'),
-            ),
+            flex: 7,),
+          Expanded(child: Container(
+            color: Colors.yellow,
           ),
-          SizedBox(
-            child: Text(
-              'You have received ' + message,
-            ),
-          )
+            flex: 3,)
         ],
       ),
     );
