@@ -10,7 +10,8 @@ class userB extends StatefulWidget {
 
 class _userBState extends State<userB> {
 
-  var buttonState_array = List<int>.filled(9, 0);
+  var buttonState_array = List<bool>.filled(9, true);
+  int temp = 0;
 
   TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5055);
   String message = "";
@@ -29,12 +30,21 @@ class _userBState extends State<userB> {
     //socketConnection.sendMessage("MessageIsReceived :D ");
   }
 
+
   //starting the connection and listening to the socket asynchronously
   void startConnection() async{
     socketConnection.enableConsolePrint(true);    //use this to see in the console what's happening
    // if(await socketConnection.canConnect(5000, attempts: 3)){   //check if it's possible to connect to the endpoint
       await socketConnection.connect(5000, messageReceived, attempts: 3);
     //}
+  }
+
+  void setBtnDisable(int btnIdx){
+    //int index = btnIdx - 1;
+    setState((){
+      if(buttonState_array[btnIdx])
+        buttonState_array[btnIdx] = false;
+    });
   }
 
   @override
@@ -50,50 +60,40 @@ class _userBState extends State<userB> {
                 mainAxisSpacing: 10,
                 children: [
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-                      if(buttonState_array[0])
-
-                    }, child: Text("item1"),),
+                    child: ElevatedButton(onPressed: buttonState_array[0] ? () => setBtnDisable(0) : null,
+                      child: Text("item1"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item2"),),
+                    child: ElevatedButton(onPressed: buttonState_array[1] ? () => setBtnDisable(1) : null,
+                      child: Text("item2"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item3"),),
+                    child: ElevatedButton(onPressed: buttonState_array[2] ? () => setBtnDisable(2) : null,
+                      child: Text("item3"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item4"),),
+                    child: ElevatedButton(onPressed: buttonState_array[3] ? () => setBtnDisable(3) : null,
+                      child: Text("item4"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item5"),),
+                    child: ElevatedButton(onPressed: buttonState_array[4] ? () => setBtnDisable(4) : null,
+                      child: Text("item5"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item6"),),
+                    child: ElevatedButton(onPressed: buttonState_array[5] ? () => setBtnDisable(5) : null,
+                      child: Text("item6"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item7"),),
+                    child: ElevatedButton(onPressed: buttonState_array[6] ? () => setBtnDisable(6) : null,
+                      child: Text("item7"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item8"),),
+                    child: ElevatedButton(onPressed: buttonState_array[7] ? () => setBtnDisable(7) : null,
+                      child: Text("item8"),),
                   ),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){
-
-                    }, child: Text("item9"),),
+                    child: ElevatedButton(onPressed: buttonState_array[8] ? () => setBtnDisable(8) : null,
+                      child: Text("item9"),),
                   ),
                 ],
               )
