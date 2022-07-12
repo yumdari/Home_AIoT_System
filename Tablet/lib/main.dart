@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           title: Text('Reminder Door'),
         ),
-        backgroundColor: Colors.white70,
+        backgroundColor: Color.fromRGBO(171, 216, 245, 1.0),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -65,40 +65,52 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    height: 200,
-                    width: 200,
+                    height: 250,
+                    width: 250,
                     child: ElevatedButton(onPressed: (){
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => userA()),
                       );
                     }, child: Text("USER1"), style: ElevatedButton.styleFrom(
-                      primary: Colors.orange
+                      primary: Colors.orangeAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      )
                     ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
+                      height: 250,
+                      width: 250,
                       child: ElevatedButton(onPressed: (){
                         Navigator.push(context,
                           MaterialPageRoute(builder: (context)=>userB()),
                         );
                       }, child: Text("USER2"), style: ElevatedButton.styleFrom(
-                        primary: Colors.teal
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: ElevatedButton(onPressed: (){}, child: Text("USER3"), style: ElevatedButton.styleFrom(
-                        primary: Colors.brown
+                      height: 250,
+                      width: 250,
+                      child: ElevatedButton(onPressed: null, child: Text("USER3"), style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: ElevatedButton(onPressed: (){}, child: Text("USER4"),style: ElevatedButton.styleFrom(
-                        primary: Colors.purpleAccent
+                      height: 250,
+                      width: 250,
+                      child: ElevatedButton(onPressed: null, child: Text("USER4"),style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                 ],

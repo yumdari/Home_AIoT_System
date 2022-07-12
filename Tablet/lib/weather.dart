@@ -20,7 +20,7 @@ class _WeatherState extends State<Weather> {
   double latitude2 = 0;
   double longitude2 = 0;
 
-  String cityName = "";
+  String weatherState = "";
   //String strWeatherId = "";
   int strWeatherId = 0;
   String iconPath = "svg/sunny.svg"; // 초깃값
@@ -40,12 +40,16 @@ class _WeatherState extends State<Weather> {
     //int id = int.parse(str_id);
     int id = str_id;
     if(id < 300) {
+      weatherState = '맑음';
       return 'svg/sunny.svg'; //climacon-sun
     } else if(id < 600) {
+      weatherState = '비';
       return 'svg/rainny.svg'; //climacon-cloud_rain
     } else if(id == 800) {
+      weatherState = '맑음';
       return 'svg/sunny.svg'; //climacon-sun
     } else if(id <= 804) {
+      weatherState = '흐림';
       return 'svg/cloudy.svg'; //climacon-cloud_sun
     }
     return 'svg/sunny.svg';
@@ -53,30 +57,24 @@ class _WeatherState extends State<Weather> {
 
   /* 위치 조회 */
   void getLocation() async{
-    print('getLocation()');
     bool serviceEnabled;
-     LocationPermission permission;
-     //print('permission');
+    LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if(!serviceEnabled){
       print('Location Service is disabled');
     }
     permission = await Geolocator.checkPermission();
     if(permission == LocationPermission.denied){
-      print('permission denied before requeest');
       permission = await Geolocator.requestPermission();
       if(permission == LocationPermission.denied){
         print('Location permission are denied');
       }
     }
-
     try {
-      print('test');
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       latitude2 = position.latitude;
       longitude2 = position.longitude;
-      print(position);
     }catch(e) {
       print('Error : Internet connection problem');
     }
@@ -97,7 +95,7 @@ class _WeatherState extends State<Weather> {
 
       temp = jsonDecode(jsonData)['main']['temp'];
       tempInt = temp.round();
-      cityName = jsonDecode(jsonData)['weather'][0]['main'];
+      //weatherState = jsonDecode(jsonData)['weather'][0]['main'];
       strWeatherId = jsonDecode(jsonData)['weather'][0]['id'];
       iconPath = getWeatherIcon(strWeatherId);
       print(iconPath);
@@ -111,6 +109,7 @@ class _WeatherState extends State<Weather> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(171, 216, 245, 1.0),
       body: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +119,16 @@ class _WeatherState extends State<Weather> {
               height: 96,
             ),
             SizedBox(
-              width: 50.0,
+              width: 25.0,
+            ),
+            Text(
+              '$weatherState',
+              style: TextStyle(
+                  fontSize: 50.0
+              ),
+            ),
+            SizedBox(
+              width: 25.0,
             ),
             Text(
               '$tempInt'+'℃',
