@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 
+final int NUM_BUTTON = 9;
+
 class userB extends StatefulWidget {
   const userB({Key? key}) : super(key: key);
 
@@ -10,8 +12,13 @@ class userB extends StatefulWidget {
 
 class _userBState extends State<userB> {
 
-  var buttonState_array = List<bool>.filled(9, true);
+
+  var buttonState_array = List<bool>.filled(NUM_BUTTON, true);
+
   int temp = 0;
+  int btnCount = 0;
+  int btnState = 0;
+
 
   TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5055);
   String message = "";
@@ -39,12 +46,28 @@ class _userBState extends State<userB> {
     //}
   }
 
+  bool chkButton(){
+    //bool allDisabled = false;
+    for(int i = 0; i < NUM_BUTTON; i++){
+      if(buttonState_array[i])
+        return false;
+    }
+    return true;
+  }
+
+  /* 버튼 누르면 비활성화 */
   void setBtnDisable(int btnIdx){
     //int index = btnIdx - 1;
+    btnCount++;
+    if(btnCount == 9)
+      btnState = 1;
     setState((){
-      if(buttonState_array[btnIdx])
+      if(buttonState_array[btnIdx]) {
         buttonState_array[btnIdx] = false;
+      }
     });
+
+
   }
 
   @override
@@ -100,6 +123,7 @@ class _userBState extends State<userB> {
           ),
             flex: 7,),
           Expanded(child: Container(
+            child: Text('$btnState'),
             color: Colors.yellow,
           ),
             flex: 3,)

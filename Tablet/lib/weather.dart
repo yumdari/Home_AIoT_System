@@ -53,13 +53,30 @@ class _WeatherState extends State<Weather> {
 
   /* 위치 조회 */
   void getLocation() async{
+    print('getLocation()');
+    bool serviceEnabled;
      LocationPermission permission;
-    permission = await Geolocator.requestPermission();
+     //print('permission');
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if(!serviceEnabled){
+      print('Location Service is disabled');
+    }
+    permission = await Geolocator.checkPermission();
+    if(permission == LocationPermission.denied){
+      print('permission denied before requeest');
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied){
+        print('Location permission are denied');
+      }
+    }
+
     try {
+      print('test');
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       latitude2 = position.latitude;
       longitude2 = position.longitude;
+      print(position);
     }catch(e) {
       print('Error : Internet connection problem');
     }
