@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 
+import 'dart:io';
+import 'dart:convert';
+import 'dart:async';
+
 final int NUM_BUTTON = 9;
 
 class userB extends StatefulWidget {
@@ -15,12 +19,14 @@ class _userBState extends State<userB> {
 
   var buttonState_array = List<bool>.filled(NUM_BUTTON, true);
 
-  int temp = 0;
   int btnCount = 0;
   int btnState = 0;
+  List items = ['열쇠', '핸드폰', '우산', '약', '지갑', '없음', '없음', '없음', '없음'];
 
+  //Socket socket;
 
-  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5055);
+  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5000);
+  //final channel = IOWebSocketChannel.connect('ws://echo.websocket.org');
   String message = "";
 
   @override
@@ -34,7 +40,6 @@ class _userBState extends State<userB> {
     setState(() {
       message=msg;
     });
-    //socketConnection.sendMessage("MessageIsReceived :D ");
   }
 
 
@@ -46,6 +51,29 @@ class _userBState extends State<userB> {
     //}
   }
 
+  void startconn() async {
+    Socket socket = await Socket.connect('10.10.141.43', 5005);
+    print('connected');
+
+
+
+
+    // send hello
+    socket.add(utf8.encode('1'));
+
+    // listen to the received data event stream
+    socket.listen((List<int> event) {
+      print(utf8.decode(event));
+    });
+
+    // wait 5 seconds
+    await Future.delayed(Duration(seconds: 5));
+
+    // .. and close the socket
+    socket.close();
+  }
+
+  /*
   bool chkButton(){
     //bool allDisabled = false;
     for(int i = 0; i < NUM_BUTTON; i++){
@@ -54,25 +82,28 @@ class _userBState extends State<userB> {
     }
     return true;
   }
+  */
 
   /* 버튼 누르면 비활성화 */
   void setBtnDisable(int btnIdx){
     //int index = btnIdx - 1;
     btnCount++;
     if(btnCount == 9)
-      btnState = 1;
+      //btnState = 1;
+      //socketConnection.sendMessage('1');
+      //socketConnection.sendMessageEOM('1','0');
+      startconn();
     setState((){
       if(buttonState_array[btnIdx]) {
         buttonState_array[btnIdx] = false;
       }
     });
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(171, 216, 245, 1.0),
       body: Row(
         children: [
           Expanded(child: Container(
@@ -84,48 +115,103 @@ class _userBState extends State<userB> {
                 children: [
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[0] ? () => setBtnDisable(0) : null,
-                      child: Text("item1"),),
+                      child: Text(items[0], style: TextStyle(fontSize: 75),),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)
+                        )
+                    ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[1] ? () => setBtnDisable(1) : null,
-                      child: Text("item2"),),
+                      child: Text(items[1], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[2] ? () => setBtnDisable(2) : null,
-                      child: Text("item3"),),
+                      child: Text(items[2], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[3] ? () => setBtnDisable(3) : null,
-                      child: Text("item4"),),
+                      child: Text(items[3], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[4] ? () => setBtnDisable(4) : null,
-                      child: Text("item5"),),
+                      child: Text(items[4], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[5] ? () => setBtnDisable(5) : null,
-                      child: Text("item6"),),
+                      child: Text(items[5], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[6] ? () => setBtnDisable(6) : null,
-                      child: Text("item7"),),
+                      child: Text(items[6], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[7] ? () => setBtnDisable(7) : null,
-                      child: Text("item8"),),
+                      child: Text(items[7], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                   SizedBox(
                     child: ElevatedButton(onPressed: buttonState_array[8] ? () => setBtnDisable(8) : null,
-                      child: Text("item9"),),
+                      child: Text(items[8], style: TextStyle(fontSize: 75),),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),),
                   ),
                 ],
               )
           ),
             flex: 7,),
           Expanded(child: Container(
-            child: Text('$btnState'),
+            child: Text('You have received ' + message),
             color: Colors.yellow,
           ),
+
             flex: 3,)
         ],
       ),

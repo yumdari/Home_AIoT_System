@@ -16,7 +16,6 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -72,7 +71,7 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => userA()),
                       );
-                    }, child: Text("USER1"), style: ElevatedButton.styleFrom(
+                    }, child: Text('USER 1', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
                       primary: Colors.orangeAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)
@@ -86,7 +85,7 @@ class Home extends StatelessWidget {
                         Navigator.push(context,
                           MaterialPageRoute(builder: (context)=>userB()),
                         );
-                      }, child: Text("USER2"), style: ElevatedButton.styleFrom(
+                      }, child: Text('USER 2', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
                         primary: Colors.orangeAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)
@@ -96,7 +95,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                       height: 250,
                       width: 250,
-                      child: ElevatedButton(onPressed: null, child: Text("USER3"), style: ElevatedButton.styleFrom(
+                      child: ElevatedButton(onPressed: null, child: Text('USER 3', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
                         primary: Colors.orangeAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)
@@ -106,7 +105,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                       height: 250,
                       width: 250,
-                      child: ElevatedButton(onPressed: null, child: Text("USER4"),style: ElevatedButton.styleFrom(
+                      child: ElevatedButton(onPressed: null, child: Text('USER 4', style: TextStyle(fontSize: 50),),style: ElevatedButton.styleFrom(
                         primary: Colors.orangeAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)
@@ -121,6 +120,3 @@ class Home extends StatelessWidget {
         ));
   }
 }
-
-
-
