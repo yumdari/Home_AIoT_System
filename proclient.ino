@@ -69,15 +69,18 @@ void loop()
         servo.write(180);
         delay(1000);
         servo.write(0);
+        break;
       }
       if(a=='0')
       {
         servo.write(0);
         delay(1000);
+        break;
       }
     }
     if(Serial.available()>0){
-      client.write("start"); 
+      client.write("start");
+      
     }
   }
   Serial.println(" ");
