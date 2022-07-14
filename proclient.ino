@@ -53,12 +53,26 @@ void loop()
   uint8_t data[30];
   connections();
   while(client.connected()){
-    while(client.available()>0){
-      Serial.write(client.read());
-      
+    if(client.available()>0){
+      //Serial.write(client.read());
+      a = client.read();
+      Serial.print(a);
+      if(a=='1')
+      {
+        servo.write(180);
+        delay(1000);
+        servo.write(0);
+        break;
+      }
+      if(a=='0')
+      {
+        servo.write(0);
+        delay(1000);
+        break;
+      }
     }
-    while(Serial.available()>0){
-      client.write("start"); 
+    if(Serial.available()>0){
+      client.write("start");
       
     }
   }
