@@ -1,4 +1,4 @@
-# Reminder_Door
+# 🚪Reminder_Door
 
 ## 22 IoT SW 공모전 3팀
 
@@ -7,7 +7,7 @@
 |염훈|팀장, LiDAR, OpenCV|
 |윤건우|부팀장, MCU, Tab & Mobile APP|
 |민동재|MCU, Server & DB|
-|손혜수|LiDAR, OpenCV|
+|손혜수|OpenCV|
 
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
