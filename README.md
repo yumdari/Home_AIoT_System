@@ -25,7 +25,8 @@
 22.07.04(민동재) 서보모터 제어를 위한 insert문 추가   
 22.07.04(민동재) 수신값을 활용하여 서보모터 제어   
 22.07.18(손혜수) opencv 2D 선 검출   
-22.07.19(손혜수) opencv image 개선 및 video 
+22.07.19(손혜수) opencv image contour morphology 적용   
+22.07.19(손혜수) opencv video contour 구현
 
 
 ## 기술 스택
