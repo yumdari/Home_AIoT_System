@@ -4,10 +4,10 @@
 
 |이름|역할|
 |---|--------|
-|염훈|팀장, Git, OpenCV, Docs|
+|염훈|팀장, Git, OpenCV|
 |윤건우|부팀장, MCU, APP|
 |민동재|MCU, DB|
-|손혜수|LiDAR, OpenCV|
+|손혜수|OpenCV|
 
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
