@@ -16,7 +16,6 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -28,17 +27,15 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Reminder Door'),
         ),
-        backgroundColor: Colors.white70,
+        backgroundColor: Color.fromRGBO(171, 216, 245, 1.0),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
             SizedBox(
               height: 200,
@@ -67,40 +64,52 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    height: 200,
-                    width: 200,
+                    height: 250,
+                    width: 250,
                     child: ElevatedButton(onPressed: (){
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => userA()),
                       );
-                    }, child: Text("USER1"), style: ElevatedButton.styleFrom(
-                      primary: Colors.orange
+                    }, child: Text('USER 1', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
+                      primary: Colors.orangeAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      )
                     ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
+                      height: 250,
+                      width: 250,
                       child: ElevatedButton(onPressed: (){
                         Navigator.push(context,
                           MaterialPageRoute(builder: (context)=>userB()),
                         );
-                      }, child: Text("USER2"), style: ElevatedButton.styleFrom(
-                        primary: Colors.teal
+                      }, child: Text('USER 2', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: ElevatedButton(onPressed: (){}, child: Text("USER3"), style: ElevatedButton.styleFrom(
-                        primary: Colors.brown
+                      height: 250,
+                      width: 250,
+                      child: ElevatedButton(onPressed: null, child: Text('USER 3', style: TextStyle(fontSize: 50),), style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                   SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: ElevatedButton(onPressed: (){}, child: Text("USER4"),style: ElevatedButton.styleFrom(
-                        primary: Colors.purpleAccent
+                      height: 250,
+                      width: 250,
+                      child: ElevatedButton(onPressed: null, child: Text('USER 4', style: TextStyle(fontSize: 50),),style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
                       ),)
                   ),
                 ],
@@ -111,6 +120,3 @@ class Home extends StatelessWidget {
         ));
   }
 }
-
-
-
