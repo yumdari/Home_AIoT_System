@@ -28,8 +28,9 @@
 22.07.11(윤건우) 상세페이지 그리드뷰 구현   
 22.07.12(윤건우) 버튼 비활성화   
 22.07.13(윤건우) 메인페이지, 상세페이지 ElevatedButton 모서리 radius 변경, 소켓 라이브러리 변경 (기존걸로 다시 변경 필요)   
-22.07.18(손혜수) opencv 2D 선 검출
-
+22.07.18(손혜수) opencv 2D 선 검출     
+22.07.19(손혜수) opencv image contour morphology 적용     
+22.07.19(손혜수) opencv video contour 구현   
 
 ## 기술 스택
 
