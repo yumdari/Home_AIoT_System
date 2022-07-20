@@ -1,13 +1,13 @@
-# Reminder_Door
+# 🚪Reminder_Door
 
 ## 22 IoT SW 공모전 3팀
 
 |이름|역할|
 |---|--------|
-|염훈|팀장, LiDAR, OpenCV|
-|윤건우|부팀장, MCU, Tab & Mobile APP|
-|민동재|MCU, Server & DB|
-|손혜수|LiDAR, OpenCV|
+|염훈|팀장, Git, OpenCV|
+|윤건우|부팀장, MCU, APP|
+|민동재|MCU, DB|
+|손혜수|OpenCV|
 
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
@@ -25,12 +25,14 @@
 22.07.04(민동재) 서보모터 제어를 위한 insert문 추가   
 22.07.04(민동재) 수신값을 활용하여 서보모터 제어   
 22.07.07(윤건우) 소켓 기능 구현   
+22.07.07(염훈) Image Proccessing H/W를 기존 cyglidar에서 PLEOMAX Camera로 변경   
 22.07.11(윤건우) 상세페이지 그리드뷰 구현   
 22.07.12(윤건우) 버튼 비활성화   
 22.07.13(윤건우) 메인페이지, 상세페이지 ElevatedButton 모서리 radius 변경, 소켓 라이브러리 변경 (기존걸로 다시 변경 필요)   
 22.07.18(손혜수) opencv 2D 선 검출     
 22.07.19(손혜수) opencv image contour morphology 적용     
 22.07.19(손혜수) opencv video contour 구현   
+22.07.19(염훈) OpenCV Motion Detection 및 Image Capture 구현   
 22.07.20(손혜수) opencv video floodfill로 색 채우기 구현   
 22.07.20(손혜수) opencv video morphology 대신 Trackbar로 기능 구현   
 
@@ -38,10 +40,10 @@
 
 | <center>분류</center> |<center>기술 스택</center>|
 | :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *Languages & Code Rules*|<img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=C&logoColor=white"/> <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/> <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/> <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/> |
-| *MCU & MPU*| <img src="https://img.shields.io/badge/ESP32-E7352C?style=flat-square&logo=Espressif&logoColor=white"/> <img src="https://img.shields.io/badge/Raspberry Pi-A22846?style=flat-square&logo=Raspberry Pi&logoColor=white"/> <img src="https://img.shields.io/badge/Jetson Nano-76B900?style=flat-square&logo=NVIDIA&logoColor=white"/> |
+| *Languages & Code Rules*|<img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=C&logoColor=white"/> <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/> <img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=Dart&logoColor=white"/>|
+| *MCU & MPU*| <img src="https://img.shields.io/badge/Arduino Pro Mini-00979D?style=flat-square&logo=Arduino&logoColor=white"/> <img src="https://img.shields.io/badge/ESP32-E7352C?style=flat-square&logo=Espressif&logoColor=white"/> <img src="https://img.shields.io/badge/Raspberry Pi 4-A22846?style=flat-square&logo=Raspberry Pi&logoColor=white"/> <img src="https://img.shields.io/badge/Jetson Nano-76B900?style=flat-square&logo=NVIDIA&logoColor=white"/> |
 | *Server & DB*|<img src="https://img.shields.io/badge/Apache-D22128?style=flat-square&logo=Apache&logoColor=white"/> <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=PHP&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>|
 | *VersionControl & CI/CD*| <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>|
-| *OS*|<img src="https://img.shields.io/badge/Windows 10-0078D6?style=flat-square&logo=Windows&logoColor=white"/> <img src="https://img.shields.io/badge/Ubuntu 20.04-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>|
-| *Platform & Library*|<img src="https://img.shields.io/badge/ROS Melodic-22314E?style=flat-square&logo=ROS&logoColor=white"/> <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white"/>|
+| *OS*|<img src="https://img.shields.io/badge/Windows 10-0078D6?style=flat-square&logo=Windows&logoColor=white"/> <img src="https://img.shields.io/badge/Ubuntu 18.04-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>|
+| *Platform*| <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white"/> <img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=Flutter&logoColor=white"/>|
 | *Collaboration Tools*|<img src="https://img.shields.io/badge/Google Docs-4285F4?style=flat-square&logo=Google&logoColor=white"/>  <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>|
