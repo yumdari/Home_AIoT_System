@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 
         //contour정보를 출력한다. (흑백,이진화 된 이미지만 적용)
         vector<vector<Point> > contours;
-        findContours(im_floodfill_inv, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+        findContours(im_out, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
         //contour를 근사화한다.
         vector<Point2f> approx;
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
                 }
             }
         }
-        imshow("im_floodfill_inv", im_floodfill_inv);
+        imshow("im_out", im_out);
         imshow("result", img_result);
         if (waitKey(5) == 27) //ESC 키 누를 때 까지 대기
             break;
