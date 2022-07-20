@@ -49,6 +49,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _currentIndex = 0;
+
+  // final screens = [
+  //   Center(child: Text('Camera', style: TextStyle(fontSize: 60))),
+  //   Center(child: Text('test', style: TextStyle(fontSize: 60))),
+  //   Center(child: Text('test', style: TextStyle(fontSize: 60))),
+  //
+  // ];
 
   void _incrementCounter() {
     setState(() {
@@ -99,7 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              //'$_counter',
+              '$_currentIndex',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -110,6 +119,31 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        //iconSize: 40, // font size
+        //selectedFontSize: 25, // selected font size
+        //unselectedFontSize: 10, // unselected font size
+        showUnselectedLabels: false, // unselected item label hidden
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(() => _currentIndex = index),
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_a_photo),
+          label: 'Camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_a_photo),
+            label: 'Camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_a_photo),
+            label: 'Camera',
+          ),
+        ],
+      ),
     );
   }
 }
