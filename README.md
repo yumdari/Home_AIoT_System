@@ -35,7 +35,8 @@
 22.07.19(염훈) OpenCV Motion Detection 및 Image Capture 구현   
 22.07.20(손혜수) opencv video floodfill로 색 채우기 구현   
 22.07.20(손혜수) opencv video morphology 대신 Trackbar로 기능 구현   
-22.07.20(염훈) OpenCV Face Recognition 구현
+22.07.20(염훈) OpenCV Face Recognition 구현   
+22.07.21(윤건우) mjpeg stream from url 출력, 하단네비게이션 메뉴 바 생성, 페이지 3개 생성   
 
 ## 기술 스택
 
