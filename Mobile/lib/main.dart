@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'CameraViewer.dart';
-import 'package:mobile/homeIoT.dart';
+import 'HomeIoT.dart';
 import 'package:mobile/setting.dart';
+
+import 'package:tcp_socket_connection/tcp_socket_connection.dart';
+
+//import 'dart:io';
+//import 'dart:convert';
+//import 'dart:async';
 
 import 'package:flutter_mjpeg/flutter_mjpeg.dart';
 
@@ -44,12 +50,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   int _currentIndex = 0;
+
 
   /* Pages array */
   final List<Widget> _pages = <Widget>[
     CameraViewer(), // camera viewer page
-    homeIoT(), // home state page
+    HomeIoT(), // home state page
     setting() // app setting
   ];
 
