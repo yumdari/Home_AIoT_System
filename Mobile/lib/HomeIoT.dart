@@ -16,9 +16,12 @@ class _HomeIoTState extends State<HomeIoT> {
   int temp = 0;
   int humi = 0;
 
+  String strTemp = '';
+  String strHumi = '';
+
   static bool isConnected = false;
 
-  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5003);
+  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5000);
 
   /* 페이지 열리면서 바로 실행 */
   @override
@@ -37,9 +40,25 @@ class _HomeIoTState extends State<HomeIoT> {
   //receiving and sending back a custom message
   void messageReceived(String msg){
     int msgLen = msg.length; // 문자열 길이 확인
+    print(msgLen);
+    if(msgLen != 20) {
+      return;
+    }
+    var listSensorVal = msg.split('@');
+    strTemp = listSensorVal[0];
+    strHumi = listSensorVal[1];
+
+    print('splitted temp : ' + strTemp);
     //if(msgLen)
     //var list = valueFromRasp
     setState(() {
+
+      //print('splitted temp : ' + strTemp);
+
+      //print('splitted humi : ' + strHumi);
+      //temp = int.parse(listSensorVal[0]);
+      //humi = int.parse(listSensorVal[1]);
+
       message=msg;
     });
     //socketConnection.sendMessage("MessageIsReceived :D ");
@@ -61,6 +80,8 @@ class _HomeIoTState extends State<HomeIoT> {
           Text(
             'Recevied message : ' + message,
           ),
+          Text('temp : ' + strTemp),
+          Text('humi : ' + strHumi),
           ElevatedButton(onPressed: (){sendMessage('hello, first message');}, child: Text('Send'))
         ],
       ),
