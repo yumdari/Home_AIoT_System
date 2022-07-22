@@ -1,11 +1,6 @@
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <unistd.h>
-#include <ESP32_Servo.h>
-
-static const int servoPin = 27;
-
-Servo servo;
 
 WiFiMulti WiFiMulti;
 WiFiClient client;
@@ -13,7 +8,6 @@ WiFiClient client;
 void setup()
 {
   Serial.begin(115200);
-  servo.attach(servoPin);
   delay(10);
 
   // We start by connecting to a WiFi network
@@ -56,7 +50,6 @@ void connections(){
 
 void loop()
 {
-  char a;
   uint8_t data[30];
   connections();
   while(client.connected()){
@@ -69,18 +62,26 @@ void loop()
         servo.write(180);
         delay(1000);
         servo.write(0);
+        break;
       }
       if(a=='0')
       {
         servo.write(0);
         delay(1000);
+        break;
       }
     }
     if(Serial.available()>0){
-      client.write("start"); 
+      client.write("start");
+      
     }
   }
   Serial.println(" ");
   client.stop();
   delay(1000);
+
+
+
+  //client.print("1");
+  //delay(100);
 }
