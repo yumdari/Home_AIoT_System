@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'CameraViewer.dart';
 import 'HomeIoT.dart';
 import 'package:mobile/setting.dart';
+import 'DataPage.dart';
 
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 
@@ -50,16 +51,80 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  //String text = 'Home';
   int _currentIndex = 0;
+
+  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5002);
+
+  _onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  /*
+  _onTap(int index){
+    setState(() => _currentIndex = index);
+    switch (index) {
+      case 0:
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new DataPage(data: 'Home');
+        }));
+        break;
+      case 1:
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new DataPage(data: 'Favorite');
+        }));
+        break;
+      case 2:
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new DataPage(data: 'Profile');
+        }));
+        break;
+      case 3:
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new DataPage(data: 'Settings');
+        }));
+        break;
+      default:
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new DataPage(data: 'Home');
+        }));
+    }
+  }
+   */
+
+
+
+  Widget getPage(int index) {
+    switch (index){
+      case 0:
+        return CameraViewer();
+        break;
+      case 1:
+        return HomeIoT(socket:socketConnection);
+        break;
+      default:
+        return DataPage(data: 'kkk');
+        break;
+    }
+  }
 
 
   /* Pages array */
+  /*
   final List<Widget> _pages = <Widget>[
     CameraViewer(), // camera viewer page
     HomeIoT(), // home state page
     setting() // app setting
   ];
+
+   */
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _pages[_currentIndex],
+      //body: _pages[_currentIndex],
+      body: getPage(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
@@ -77,7 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
         //unselectedFontSize: 10, // unselected font size
         showUnselectedLabels: false, // unselected item label hidden
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        //onTap: (index) => setState(() => _currentIndex = index),
+        onTap: _onTap,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.camera_alt_rounded),
