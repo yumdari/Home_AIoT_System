@@ -38,6 +38,7 @@
 22.07.20(손혜수) opencv video morphology 대신 Trackbar로 기능 구현   
 22.07.20(염훈) OpenCV Face Recognition 구현   
 22.07.22(염훈) OpenCV Object & Motion & Face Detection 구현   
+22.07.25(염훈) OpenCV on Jetson Nano
 
 ## 기술 스택
 
