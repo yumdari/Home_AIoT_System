@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="face_recognition.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="motion_detection.cpp" />
+    <ClCompile Include="object_detection.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="motion_detection.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
