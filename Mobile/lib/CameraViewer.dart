@@ -18,7 +18,7 @@ class CameraViewer extends HookWidget {
                   print(stack);
                   return Text(error.toString(), style: TextStyle(color: Colors.red));
                 },
-                stream: 'http://10.10.141.250:8080/?action=stream',
+                stream: 'http://10.10.141.184:8001/?action=stream',
               ),
             ),
           ),

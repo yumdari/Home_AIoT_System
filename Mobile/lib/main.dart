@@ -6,10 +6,6 @@ import 'DataPage.dart';
 
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 
-//import 'dart:io';
-//import 'dart:convert';
-//import 'dart:async';
-
 import 'package:flutter_mjpeg/flutter_mjpeg.dart';
 
 void main() {
@@ -51,11 +47,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //String text = 'Home';
-  int _currentIndex = 0;
 
-  TcpSocketConnection socketConnection=TcpSocketConnection("10.10.141.43", 5002);
+  int _currentIndex = 0; // 현재 인덱스
 
+  /* 네비게이션 아이템 선택 시 실행*/
   _onTap(int index) {
     setState(() {
       _currentIndex = index;
@@ -100,21 +95,19 @@ class _MyHomePageState extends State<MyHomePage> {
    */
 
 
-
   Widget getPage(int index) {
     switch (index){
       case 0:
         return CameraViewer();
         break;
       case 1:
-        return HomeIoT(socket:socketConnection);
+        return HomeIoT();
         break;
       default:
         return DataPage(data: 'kkk');
         break;
     }
   }
-
 
   /* Pages array */
   /*

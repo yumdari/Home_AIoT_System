@@ -42,6 +42,9 @@ dependencies:
   # tcp/ip socket
   tcp_socket_connection: ^0.3.0
 
+  # gauges
+  syncfusion_flutter_gauges: ^20.2.40
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
