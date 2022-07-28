@@ -28,7 +28,8 @@
 22.07.07(염훈) Image Proccessing H/W를 기존 cyglidar에서 PLEOMAX Camera로 변경   
 22.07.11(윤건우) 상세페이지 그리드뷰 구현   
 22.07.12(윤건우) 버튼 비활성화   
-22.07.13(윤건우) 메인페이지, 상세페이지 ElevatedButton 모서리 radius 변경, 소켓 라이브러리 변경 (기존걸로 다시 변경 필요)   
+22.07.13(윤건우) 메인페이지, 상세페이지 ElevatedButton 모서리 radius 변경, 소켓 라이브러리 변경 (기존걸로 다시 변경 필요)  
+22.07.14(민동재) 멀티 쓰레드를 활용한 리눅스 서버 구축    
 22.07.18(손혜수) opencv 2D 선 검출     
 22.07.19(손혜수) opencv image contour morphology 적용     
 22.07.19(손혜수) opencv video contour 구현   
@@ -37,6 +38,9 @@
 22.07.20(손혜수) opencv video morphology 대신 Trackbar로 기능 구현   
 22.07.20(염훈) OpenCV Face Recognition 구현   
 22.07.21(윤건우) mjpeg stream from url 출력, 하단네비게이션 메뉴 바 생성, 페이지 3개 생성   
+22.07.22(염훈) OpenCV Object & Motion & Face Detection 구현   
+22.07.25(염훈) OpenCV on Jetson Nano
+22.07.26(염훈) devide code(main, functions, header)
 22.07.29(윤건우) HomeIoT페이지 소켓 통신, parsing, 온습도 gauge 출력   
 
 ## 기술 스택
