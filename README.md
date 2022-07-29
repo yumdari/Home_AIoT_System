@@ -37,9 +37,11 @@
 22.07.20(손혜수) opencv video floodfill로 색 채우기 구현   
 22.07.20(손혜수) opencv video morphology 대신 Trackbar로 기능 구현   
 22.07.20(염훈) OpenCV Face Recognition 구현   
+22.07.21(윤건우) mjpeg stream from url 출력, 하단네비게이션 메뉴 바 생성, 페이지 3개 생성   
 22.07.22(염훈) OpenCV Object & Motion & Face Detection 구현   
 22.07.25(염훈) OpenCV on Jetson Nano
-22.07.26(염훈) devide code(main, functions, header)
+22.07.26(염훈) devide code(main, functions, header)   
+22.07.29(윤건우) HomeIoT페이지 소켓 통신, parsing, 온습도 gauge 출력   
 
 ## 기술 스택
 
