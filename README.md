@@ -1,4 +1,4 @@
-# 🚪Reminder_Door
+# Home AIoT System
 
 ## 22 IoT SW 공모전 3팀
 
