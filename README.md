@@ -1,5 +1,9 @@
 # Home AIoT System
 
+## 기능
+
+<img src="https://user-images.githubusercontent.com/91246353/188445945-645ad175-c101-45f1-9ffb-e8bbf481d718.jpg" width="500" height="400"/>
+
 ## 22 IoT SW 공모전 3팀
 
 |이름|역할|
