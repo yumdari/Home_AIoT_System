@@ -28,7 +28,7 @@ class CameraViewer extends HookWidget {
                 onPressed: () {
                   isRunning.value = !isRunning.value;
                 },
-                child: Text('Toggle'),
+                child: Text('Stop'),
               )
             ],
           ),
