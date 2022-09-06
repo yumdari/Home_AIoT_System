@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mjpeg/flutter_mjpeg.dart'; // Fullter widget shows mjpeg stream from URL
 
 class CameraViewer extends HookWidget {
+  String btnName = 'Pause';
   @override
   Widget build(BuildContext context) {
     final isRunning = useState(true);
@@ -23,12 +24,17 @@ class CameraViewer extends HookWidget {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   isRunning.value = !isRunning.value;
+                  if(isRunning.value)
+                    btnName = 'Pause';
+                  else
+                    btnName = 'Play';
                 },
-                child: Text('Stop'),
+                child: Text(btnName),
               )
             ],
           ),

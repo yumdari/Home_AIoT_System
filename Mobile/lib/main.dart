@@ -57,44 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  /*
-  _onTap(int index){
-    setState(() => _currentIndex = index);
-    switch (index) {
-      case 0:
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new DataPage(data: 'Home');
-        }));
-        break;
-      case 1:
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new DataPage(data: 'Favorite');
-        }));
-        break;
-      case 2:
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new DataPage(data: 'Profile');
-        }));
-        break;
-      case 3:
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new DataPage(data: 'Settings');
-        }));
-        break;
-      default:
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new DataPage(data: 'Home');
-        }));
-    }
-  }
-   */
-
-
   Widget getPage(int index) {
     switch (index){
       case 0:
@@ -108,16 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
   }
-
-  /* Pages array */
-  /*
-  final List<Widget> _pages = <Widget>[
-    CameraViewer(), // camera viewer page
-    HomeIoT(), // home state page
-    setting() // app setting
-  ];
-
-   */
 
   @override
   Widget build(BuildContext context) {
@@ -147,10 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.home),
             label: 'HomeIoT',
           ),
+          /*
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Setting',
           ),
+
+           */
         ],
       ),
     );
