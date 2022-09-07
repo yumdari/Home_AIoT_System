@@ -457,9 +457,9 @@ class _HomeIoTState extends State<HomeIoT> {
                     setState(() {
                       isSwitched = value;
                       if (!isSwitched) {
-                        sendMessage('APP:0');
+                        sendMessage('GAS:0');
                       } else
-                        sendMessage('APP:1');
+                        sendMessage('GAS:1');
                     });
                   }),
             ],
