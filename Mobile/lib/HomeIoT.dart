@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'notification.dart';
 
 class HomeIoT extends StatefulWidget {
   const HomeIoT({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class HomeIoT extends StatefulWidget {
 }
 
 class _HomeIoTState extends State<HomeIoT> {
+
+  late final NotificationService service;
+
   String message = "00:00";
 
   double temp = 0;
@@ -17,7 +21,7 @@ class _HomeIoTState extends State<HomeIoT> {
   double led = 0;
   int isValveClosed = 0;
 
-  
+  String strFunc = '';
   String strHumi = '0';
   String strTemp = '0';
   String strGasValve = '0';
@@ -103,6 +107,8 @@ class _HomeIoTState extends State<HomeIoT> {
   void initState() {
     super.initState();
     connectServer();
+    service = NotificationService();
+    service.init();
   }
 
   /* 페이지 종료되면 disconnect */
@@ -112,6 +118,10 @@ class _HomeIoTState extends State<HomeIoT> {
     super.dispose();
     print('dispose()');
     socket.disconnect();
+  }
+
+  void showNotification() async {
+    await service.showNotification(id: 0, title: '외부인 감지', body: '카메라를 확인하세요');
   }
 
   //receiving and sending back a custom message
@@ -138,17 +148,27 @@ class _HomeIoTState extends State<HomeIoT> {
 
   /* 메시지 파싱 */
   void parseMsg(String msg) {
-    var listSensorVal = msg.split('/');
-    strTemp = listSensorVal[0];
-    print('parsedTemp : ' + strTemp);
-    strHumi = listSensorVal[1];
-    print('parsedHumi : ' + strHumi);
-    strLed = listSensorVal[2];
-    print('LedValue : ' + strLed);
+    if(msg.startsWith('S'))
+      {
+        var listSensorVal = msg.split('/');
+        strFunc = listSensorVal[0];
+        print('parsedFunc : ' + strFunc);
+        strTemp = listSensorVal[1];
+        print('parsedTemp : ' + strTemp);
+        strHumi = listSensorVal[2];
+        print('parsedHumi : ' + strHumi);
+        temp = double.parse(strTemp);
+        humi = double.parse(strHumi);
 
-    temp = double.parse(strTemp);
-    humi = double.parse(strHumi);
-    led = double.parse(strLed);
+      }
+    else if(msg.startsWith('A'))
+      {
+        print('Alert!!');
+        showNotification();
+      }
+
+
+    //led = double.parse(strLed);
     //isValveClosed = int.parse(strGasValve);
     //isValveClosed == 1 ? isSwitched = false : isSwitched = true;
   }
