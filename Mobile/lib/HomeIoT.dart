@@ -17,6 +17,7 @@ class _HomeIoTState extends State<HomeIoT> {
   double led = 0;
   int isValveClosed = 0;
 
+  
   String strHumi = '0';
   String strTemp = '0';
   String strGasValve = '0';
@@ -35,8 +36,12 @@ class _HomeIoTState extends State<HomeIoT> {
    */
 
   /* TCP/IP 소켓 객체 생성 */
+  // 라즈베리파이 서버
   //TcpSocketConnection socket = TcpSocketConnection("10.10.141.217", 5000);
-  TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
+  // 내 서버
+  //TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
+  // 집 서버
+  TcpSocketConnection socket = TcpSocketConnection("192.168.22.32", 5000);
 
   /* 온도 게이지 위젯 생성 */
   Widget _getTempLinearGauge() {

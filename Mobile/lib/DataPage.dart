@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
-class DataPage extends StatelessWidget {
-  final String data;
-  const DataPage({Key? key, required this.data}) : super(key: key);
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'notification.dart';
+
+class DataPage extends StatefulWidget {
+  const DataPage({Key? key}) : super(key: key);
+
+  @override
+  State<DataPage> createState() => _DataPageState();
+}
+
+class _DataPageState extends State<DataPage> {
+  late final NotificationService service;
+  /* 페이지 열리면서 바로 실행 */
+  @override
+  void initState() {
+    super.initState();
+    service = NotificationService();
+    service.init();
+    print('Entered DataPage');
+    //var initSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+    //var initSettingsIos = IOSInitializationSettings();
+    //var initializationSettings = InitializationSettings(android : initSettingsAndroid, iOS: initSettingsIos);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.red[900],
-          title: Text("Data Page")),
-      body: Center(
-          child: Text(data,
-              style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold))),
+    return Container(
+        child: ElevatedButton(onPressed: () async {
+          await service.showNotification(id: 0, title: 'Notification Title', body: 'Somebody');
+        }, child: Text('button'),),
     );
   }
 }

@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return HomeIoT();
         break;
       default:
-        return DataPage(data: 'kkk');
+        return DataPage();
         break;
     }
   }
@@ -99,13 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.home),
             label: 'HomeIoT',
           ),
-          /*
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Setting',
+            icon: Icon(Icons.add_alert),
+            label: 'Test',
           ),
 
-           */
+
         ],
       ),
     );
