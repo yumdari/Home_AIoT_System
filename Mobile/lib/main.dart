@@ -47,7 +47,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   int _currentIndex = 0; // 현재 인덱스
 
   /* 네비게이션 아이템 선택 시 실행*/
@@ -58,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget getPage(int index) {
-    switch (index){
+    switch (index) {
       case 0:
         return CameraViewer();
         break;
@@ -86,26 +85,26 @@ class _MyHomePageState extends State<MyHomePage> {
         //iconSize: 40, // font size
         //selectedFontSize: 25, // selected font size
         //unselectedFontSize: 10, // unselected font size
-        showUnselectedLabels: false, // unselected item label hidden
+        showUnselectedLabels: false,
+        // unselected item label hidden
         currentIndex: _currentIndex,
         //onTap: (index) => setState(() => _currentIndex = index),
         onTap: _onTap,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt_rounded),
-          label: 'Camera',
+            icon: Icon(Icons.camera_alt_rounded),
+            label: 'Camera',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'HomeIoT',
           ),
-
+          /*
           BottomNavigationBarItem(
             icon: Icon(Icons.add_alert),
             label: 'Test',
           ),
-
-
+           */
         ],
       ),
     );
