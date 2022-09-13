@@ -45,6 +45,10 @@ dependencies:
   # gauges
   syncfusion_flutter_gauges: ^20.2.40
 
+  # local notification
+  flutter_local_notifications: ^9.9.1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

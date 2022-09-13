@@ -47,6 +47,11 @@
 22.07.26(염훈) devide code(main, functions, header)   
 22.07.29(윤건우) HomeIoT페이지 소켓 통신, parsing, 온습도 gauge 출력   
 22.08.12(손혜수) streaming server 구축   
+22.09.05(윤건우) HomeIoT 페이지 LED gauge 출력   
+22.09.06(윤건우) 각 방 LED 조절 게이지 추가   
+22.09.07(윤건우) 가스밸브 조절 전송 메시지 변경 'APP:x' -> 'GAS:x'  
+22.09.09(윤건우) 푸쉬 알림 메시지 구현, 소켓 메시지 : ALERT, 온습도 센싱 메시지 : SENSOR/34/77   
+22.09.13(윤건우) 푸쉬 기능 구현 완료, ALERT/0 : 외부인 인식, ALERT/1 : 상자 인식, ALERT/2 : 지문인식 에러   
 
 ## 기술 스택
 
