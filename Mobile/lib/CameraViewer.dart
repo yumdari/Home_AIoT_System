@@ -11,6 +11,10 @@ class CameraViewer extends HookWidget {
     return  Scaffold(
       body: Column(
         children: <Widget>[
+          SizedBox(
+            height: 25,
+          ),
+          Time(),
           Expanded(
             child: Center(
               child: Mjpeg(
@@ -27,7 +31,6 @@ class CameraViewer extends HookWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              //Time(),
               ElevatedButton(
                 onPressed: () {
                   isRunning.value = !isRunning.value;
