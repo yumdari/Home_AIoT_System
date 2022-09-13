@@ -1,7 +1,10 @@
+import numpy as np
 import cv2
 import time
 import threading
 from flask import Response, Flask
+
+detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Image frame sent to the Flask object
 global video_frame
@@ -20,16 +23,28 @@ def captureFrames():
     # Video capturing from OpenCV
     video_capture = cv2.VideoCapture(0)
 
-
     while True and video_capture.isOpened():
         return_key, frame = video_capture.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = detector.detectMultiScale(gray, 1.3, 5)
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         if not return_key:
             break
+            
+        with thread_lock:
+            video_frame = frame.copy()
+        
+        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #faces = detector.detectMultiScale(gray, 1.3, 5)
+        #for (x, y, w, h) in faces:
+            #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
 
         # Create a copy of the frame and store it in the global variable,
         # with thread safe access
-        with thread_lock:
-            video_frame = frame.copy()
+        #with thread_lock:
+            #video_frame = frame.copy()
         
         key = cv2.waitKey(30) & 0xff
         if key == 27:
