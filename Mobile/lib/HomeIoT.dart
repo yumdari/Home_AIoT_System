@@ -27,9 +27,9 @@ class _HomeIoTState extends State<HomeIoT> {
 
   /* TCP/IP 소켓 객체 생성 */
   // 라즈베리파이 서버
-  //TcpSocketConnection socket = TcpSocketConnection("10.10.141.217", 5000);
+  TcpSocketConnection socket = TcpSocketConnection("10.10.141.217", 5000);
   // 내 서버
-  TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
+  //TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
   // 집 서버
   //TcpSocketConnection socket = TcpSocketConnection("192.168.22.32", 5000);
 
@@ -110,7 +110,7 @@ class _HomeIoTState extends State<HomeIoT> {
   void showNotification(String mode) async {
     String strTitle;
     //mode.compareTo('ddd');
-    if(identical(mode[0], '0')) {
+    if(mode[0] == '0') {
       strTitle = '외부인 감지';
     }
     else if (mode[0] == '1') {
