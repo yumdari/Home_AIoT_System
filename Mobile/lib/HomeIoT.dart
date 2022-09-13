@@ -109,13 +109,14 @@ class _HomeIoTState extends State<HomeIoT> {
   /* push 알림 출력 */
   void showNotification(String mode) async {
     String strTitle;
-    if(mode == '0') {
+    //mode.compareTo('ddd');
+    if(identical(mode[0], '0')) {
       strTitle = '외부인 감지';
     }
-    else if (mode == '1') {
+    else if (mode[0] == '1') {
       strTitle = '택배상자 감지';
     }
-    else if (mode == '2') {
+    else if (mode[0] == '2') {
       strTitle = '지문인식 오류';
     }
     else{

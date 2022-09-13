@@ -48,6 +48,9 @@ dependencies:
   # local notification
   flutter_local_notifications: ^9.9.1
 
+  # timer_builder:
+  timer_builder: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
