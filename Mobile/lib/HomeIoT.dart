@@ -14,38 +14,24 @@ class _HomeIoTState extends State<HomeIoT> {
 
   late final NotificationService service;
 
-  String message = "00:00";
-
-  double temp = 0;
-  double humi = 0;
-  double led = 0;
-  int isValveClosed = 0;
+  double temp = 0; // 온도 값
+  double humi = 0; // 습도 값
+  double led = 0; // LED 값
 
   String strFunc = '';
+  String strAlert = '0';
   String strHumi = '0';
   String strTemp = '0';
-  String strGasValve = '0';
-  String strLed = '0';
 
-  bool isSwitched = false;
-
-  /*
-  Widget _getGauge(bool whichGauge) {
-    if (whichGauge) {
-      return _getTempLinearGauge();
-    } else {
-      return _getHumiLinearGauge();
-    }
-  }
-   */
+  bool isGasSwitched = false;
 
   /* TCP/IP 소켓 객체 생성 */
   // 라즈베리파이 서버
   //TcpSocketConnection socket = TcpSocketConnection("10.10.141.217", 5000);
   // 내 서버
-  //TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
+  TcpSocketConnection socket = TcpSocketConnection("10.10.141.13", 6000);
   // 집 서버
-  TcpSocketConnection socket = TcpSocketConnection("192.168.22.32", 5000);
+  //TcpSocketConnection socket = TcpSocketConnection("192.168.22.32", 5000);
 
   /* 온도 게이지 위젯 생성 */
   Widget _getTempLinearGauge() {
@@ -106,9 +92,9 @@ class _HomeIoTState extends State<HomeIoT> {
   @override
   void initState() {
     super.initState();
-    connectServer();
-    service = NotificationService();
-    service.init();
+    connectServer(); // 소켓 서버 연결
+    service = NotificationService(); // push 서비스 객체 생성
+    service.init(); // push 서비스 초기화
   }
 
   /* 페이지 종료되면 disconnect */
@@ -117,11 +103,17 @@ class _HomeIoTState extends State<HomeIoT> {
     // TODO: implement dispose
     super.dispose();
     print('dispose()');
-    socket.disconnect();
+    socket.disconnect(); // 소켓 연결 해제
   }
 
-  void showNotification() async {
-    await service.showNotification(id: 0, title: '외부인 감지', body: '카메라를 확인하세요');
+  /* push 알림 출력 */
+  void showNotification(String mode) async {
+    if(mode == '0')
+      await service.showNotification(id: 0, title: '외부인 감지', body: '카메라를 확인하세요');
+    else if (mode == '1')
+      await service.showNotification(id: 0, title: '택배 감지', body: '카메라를 확인하세요');
+    else
+      await service.showNotification(id: 0, title: '지문인식 오류', body: '카메라를 확인하세요');
   }
 
   //receiving and sending back a custom message
@@ -148,6 +140,7 @@ class _HomeIoTState extends State<HomeIoT> {
 
   /* 메시지 파싱 */
   void parseMsg(String msg) {
+    /* 접두어 SENSOR */
     if(msg.startsWith('S'))
       {
         var listSensorVal = msg.split('/');
@@ -161,68 +154,58 @@ class _HomeIoTState extends State<HomeIoT> {
         humi = double.parse(strHumi);
 
       }
+    /* 접두어 ALERT */
     else if(msg.startsWith('A'))
       {
         print('Alert!!');
-        showNotification();
+        var listSensorVal = msg.split('/');
+        strAlert = listSensorVal[1];
+        showNotification(strAlert);
       }
-
-
-    //led = double.parse(strLed);
-    //isValveClosed = int.parse(strGasValve);
-    //isValveClosed == 1 ? isSwitched = false : isSwitched = true;
-  }
-
-  void sendLedValue(double value) {
-    print('gauge value : ' + value.toString());
   }
 
   String _annotationValueA = '60';
   String _annotationValueB = '60';
   String _annotationValueC = '60';
+
   double shapePointerValueA = 50;
   double shapePointerValueB = 50;
   double shapePointerValueC = 50;
+
   int intPointerValueA = 0;
   int intPointerValueB = 0;
   int intPointerValueC = 0;
 
+  /* 게이지 Room A 값 변경 콜백 함수 */
   void handlePointerValueChangedA(double value) {
     setState(() {
-      //print('value : ' + value.toString());
       final int _value = value.toInt();
       shapePointerValueA = value;
-
-      //sendMessage('LED:'+intPointerValue.toString()+'127:127');
       _annotationValueA = '$_value';
     });
   }
 
+  /* 게이지 Room B 값 변경 콜백 함수 */
   void handlePointerValueChangedB(double value) {
     setState(() {
-      //print('value : ' + value.toString());
       final int _value = value.toInt();
       shapePointerValueB = value;
-
-      //sendMessage('LED:'+intPointerValue.toString()+'127:127');
       _annotationValueB = '$_value';
     });
   }
 
+  /* 게이지 Room C 값 변경 콜백 함수 */
   void handlePointerValueChangedC(double value) {
     setState(() {
-      //print('value : ' + value.toString());
       final int _value = value.toInt();
       shapePointerValueC = value;
-
-      //sendMessage('LED:'+intPointerValue.toString()+'127:127');
       _annotationValueC = '$_value';
     });
   }
 
+  /* 게이지 Room A 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndA(double value) {
     intPointerValueA = (value * 255 / 100).toInt();
-    //print('LED:'+intPointerValue.toString()+':127:127');
     sendMessage('LED:' +
         intPointerValueA.toString() +
         ':' +
@@ -231,9 +214,9 @@ class _HomeIoTState extends State<HomeIoT> {
         intPointerValueC.toString());
   }
 
+  /* 게이지 Room B 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndB(double value) {
     intPointerValueB = (value * 255 / 100).toInt();
-    //print('LED:'+intPointerValue.toString()+':127:127');
     sendMessage('LED:' +
         intPointerValueA.toString() +
         ':' +
@@ -242,9 +225,9 @@ class _HomeIoTState extends State<HomeIoT> {
         intPointerValueC.toString());
   }
 
+  /* 게이지 Room C 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndC(double value) {
     intPointerValueC = (value * 255 / 100).toInt();
-    //print('LED:'+intPointerValue.toString()+':127:127');
     sendMessage('LED:' +
         intPointerValueA.toString() +
         ':' +
@@ -286,10 +269,12 @@ class _HomeIoTState extends State<HomeIoT> {
           SizedBox(
             height: 25,
           ),
+
           /* LED 조절 게이지 */
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              /* 게이지 Room A */
               Container(
                 width: 250,
                 height: 250,
@@ -299,9 +284,9 @@ class _HomeIoTState extends State<HomeIoT> {
                       RangePointer(
                         value: shapePointerValueA,
                         //onValueChangeStart: handlePointerValueChanged,
-                        onValueChangeEnd: handlePointerValueChangedEndA,
-                        onValueChanged: handlePointerValueChangedA,
-                        enableDragging: true,
+                        onValueChangeEnd: handlePointerValueChangedEndA, // 드래깅 끝나면 함수 call
+                        onValueChanged: handlePointerValueChangedA, // 게이지 값 변경마다 함수 call
+                        enableDragging: true, // 드래깅 값 조정 가능
                       )
                     ], annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
@@ -332,6 +317,8 @@ class _HomeIoTState extends State<HomeIoT> {
                   ],
                 ),
               ),
+
+              /* 게이지 Room B */
               Container(
                 width: 250,
                 height: 250,
@@ -374,6 +361,8 @@ class _HomeIoTState extends State<HomeIoT> {
                   ],
                 ),
               ),
+
+              /* 게이지 Room C */
               Container(
                 width: 250,
                 height: 250,
@@ -419,56 +408,7 @@ class _HomeIoTState extends State<HomeIoT> {
             ],
           ),
 
-          /* LED 게이지 출력 */
-          /*
-          Container(
-            width: 250,
-            height: 250,
-            child: SfRadialGauge(
-                enableLoadingAnimation: true,
-                animationDuration: 1000,
-                title: GaugeTitle(
-                    text: 'LED Value',
-                    textStyle:
-                        //const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
-                        const TextStyle(fontSize: 30.0)),
-                axes: <RadialAxis>[
-                  RadialAxis(minimum: 0, maximum: 255, ranges: <GaugeRange>[
-                    GaugeRange(
-                        startValue: 0,
-                        endValue: 100,
-                        color: Colors.green,
-                        startWidth: 10,
-                        endWidth: 10),
-                    GaugeRange(
-                        startValue: 100,
-                        endValue: 200,
-                        color: Colors.orange,
-                        startWidth: 10,
-                        endWidth: 10),
-                    GaugeRange(
-                        startValue: 200,
-                        endValue: 255,
-                        color: Colors.red,
-                        startWidth: 10,
-                        endWidth: 10)
-                  ], pointers: <GaugePointer>[
-                    NeedlePointer(value: led)
-                  ], annotations: <GaugeAnnotation>[
-                    GaugeAnnotation(
-                        widget: Container(
-                            child: Text(strLed,
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold))),
-                        angle: 90,
-                        positionFactor: 0.5)
-                  ])
-                ]),
-          ),
-
-           */
-
+          /* 가스 밸브 스위치 위젯 */
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -477,11 +417,11 @@ class _HomeIoTState extends State<HomeIoT> {
                 style: TextStyle(fontSize: 30),
               ),
               Switch(
-                  value: isSwitched,
+                  value: isGasSwitched,
                   onChanged: (value) {
                     setState(() {
-                      isSwitched = value;
-                      if (!isSwitched) {
+                      isGasSwitched = value;
+                      if (!isGasSwitched) {
                         sendMessage('GAS:0');
                       } else
                         sendMessage('GAS:1');
@@ -490,17 +430,8 @@ class _HomeIoTState extends State<HomeIoT> {
             ],
           ),
           Text(
-            'Recevied message : ' + strTemp + '/' + strHumi + '/' + strLed,
+            'Recevied message : ' +strFunc +'/'+ strTemp + '/' + strHumi,
           ),
-          /*
-          Text('temp : ' + strTemp,
-          ),
-          Text('humi : ' + strHumi,
-          ),
-          Text('LED : ' + strLed,
-          ),
-           */
-          //ElevatedButton(onPressed: (){sendMessage('APP:1');}, child: Text('Send')),
         ],
       ),
     );
