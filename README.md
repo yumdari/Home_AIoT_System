@@ -1,13 +1,17 @@
-# 🚪Reminder_Door
+# Home AIoT System
+
+## 기능
+
+<img src="https://user-images.githubusercontent.com/91246353/188445945-645ad175-c101-45f1-9ffb-e8bbf481d718.jpg" width="500" height="400"/>
 
 ## 22 IoT SW 공모전 3팀
 
 |이름|역할|
 |---|--------|
-|염훈|팀장, Git, OpenCV|
+|염훈|팀장, Git, H/W, OpenCV|
 |윤건우|부팀장, MCU, APP|
-|민동재|MCU, DB|
-|손혜수|OpenCV|
+|민동재|MCU, Server, DB|
+|손혜수|OpenCV, Streaming Server|
 
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
@@ -42,6 +46,7 @@
 22.07.25(염훈) OpenCV on Jetson Nano   
 22.07.26(염훈) devide code(main, functions, header)   
 22.07.29(윤건우) HomeIoT페이지 소켓 통신, parsing, 온습도 gauge 출력   
+22.08.12(손혜수) streaming server 구축   
 22.09.05(윤건우) HomeIoT 페이지 LED gauge 출력   
 22.09.06(윤건우) 각 방 LED 조절 게이지 추가   
 22.09.07(윤건우) 가스밸브 조절 전송 메시지 변경 'APP:x' -> 'GAS:x'  
@@ -52,9 +57,9 @@
 
 | <center>분류</center> |<center>기술 스택</center>|
 | :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *Languages & Code Rules*|<img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=C&logoColor=white"/> <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/> <img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=Dart&logoColor=white"/>|
+| *Languages & Code Rules*|<img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=C&logoColor=white"/> <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/> <img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=Dart&logoColor=white"/> <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>|
 | *MCU & MPU*| <img src="https://img.shields.io/badge/Arduino Pro Mini-00979D?style=flat-square&logo=Arduino&logoColor=white"/> <img src="https://img.shields.io/badge/ESP32-E7352C?style=flat-square&logo=Espressif&logoColor=white"/> <img src="https://img.shields.io/badge/Raspberry Pi 4-A22846?style=flat-square&logo=Raspberry Pi&logoColor=white"/> <img src="https://img.shields.io/badge/Jetson Nano-76B900?style=flat-square&logo=NVIDIA&logoColor=white"/> |
-| *Server & DB*|<img src="https://img.shields.io/badge/Apache-D22128?style=flat-square&logo=Apache&logoColor=white"/> <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=PHP&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>|
+| *Server & DB*|<img src="https://img.shields.io/badge/Apache-D22128?style=flat-square&logo=Apache&logoColor=white"/> <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=PHP&logoColor=white"/> <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=MariaDB&logoColor=white"/> <img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=Flask&logoColor=white"/>|
 | *VersionControl & CI/CD*| <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>|
 | *OS*|<img src="https://img.shields.io/badge/Windows 10-0078D6?style=flat-square&logo=Windows&logoColor=white"/> <img src="https://img.shields.io/badge/Ubuntu 18.04-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>|
 | *Platform*| <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white"/> <img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=Flutter&logoColor=white"/>|
