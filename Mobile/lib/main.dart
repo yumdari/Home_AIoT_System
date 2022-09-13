@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'CameraViewer.dart';
 import 'HomeIoT.dart';
-import 'package:mobile/setting.dart';
 import 'DataPage.dart';
+
 
 import 'package:tcp_socket_connection/tcp_socket_connection.dart';
 
