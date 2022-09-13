@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mjpeg/flutter_mjpeg.dart'; // Fullter widget shows mjpeg stream from URL
+import 'Time.dart';
 
 class CameraViewer extends HookWidget {
   String btnName = 'Pause';
@@ -26,6 +27,7 @@ class CameraViewer extends HookWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              //Time(),
               ElevatedButton(
                 onPressed: () {
                   isRunning.value = !isRunning.value;

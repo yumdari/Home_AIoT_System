@@ -108,12 +108,20 @@ class _HomeIoTState extends State<HomeIoT> {
 
   /* push 알림 출력 */
   void showNotification(String mode) async {
-    if(mode == '0')
-      await service.showNotification(id: 0, title: '외부인 감지', body: '카메라를 확인하세요');
-    else if (mode == '1')
-      await service.showNotification(id: 0, title: '택배 감지', body: '카메라를 확인하세요');
-    else
-      await service.showNotification(id: 0, title: '지문인식 오류', body: '카메라를 확인하세요');
+    String strTitle;
+    if(mode == '0') {
+      strTitle = '외부인 감지';
+    }
+    else if (mode == '1') {
+      strTitle = '택배상자 감지';
+    }
+    else if (mode == '2') {
+      strTitle = '지문인식 오류';
+    }
+    else{
+      strTitle = 'No Title';
+    }
+    await service.showNotification(id: 0, title: strTitle, body: '카메라를 확인하세요');
   }
 
   //receiving and sending back a custom message
@@ -206,34 +214,19 @@ class _HomeIoTState extends State<HomeIoT> {
   /* 게이지 Room A 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndA(double value) {
     intPointerValueA = (value * 255 / 100).toInt();
-    sendMessage('LED:' +
-        intPointerValueA.toString() +
-        ':' +
-        intPointerValueB.toString() +
-        ':' +
-        intPointerValueC.toString());
+    sendMessage('LED:$intPointerValueA:$intPointerValueB:$intPointerValueC');
   }
 
   /* 게이지 Room B 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndB(double value) {
     intPointerValueB = (value * 255 / 100).toInt();
-    sendMessage('LED:' +
-        intPointerValueA.toString() +
-        ':' +
-        intPointerValueB.toString() +
-        ':' +
-        intPointerValueC.toString());
+    sendMessage('LED:$intPointerValueA:$intPointerValueB:$intPointerValueC');
   }
 
   /* 게이지 Room C 드래깅 완료 콜백 함수 */
   void handlePointerValueChangedEndC(double value) {
     intPointerValueC = (value * 255 / 100).toInt();
-    sendMessage('LED:' +
-        intPointerValueA.toString() +
-        ':' +
-        intPointerValueB.toString() +
-        ':' +
-        intPointerValueC.toString());
+    sendMessage('LED:$intPointerValueA:$intPointerValueB:$intPointerValueC');
   }
 
   @override
@@ -244,20 +237,20 @@ class _HomeIoTState extends State<HomeIoT> {
         children: [
           Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 // 여백
                 height: 20,
               ),
-              Text(
+              const Text(
                 'Temperature',
                 style: TextStyle(fontSize: 30),
               ),
               _getTempLinearGauge(), // 온도 게이지 출력
-              SizedBox(
+              const SizedBox(
                 // 여백
                 height: 25,
               ),
-              Text(
+              const Text(
                 'Humidity',
                 style: TextStyle(fontSize: 30),
               ),
@@ -266,7 +259,7 @@ class _HomeIoTState extends State<HomeIoT> {
           ),
 
           /* 여백 */
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
 
@@ -428,10 +421,10 @@ class _HomeIoTState extends State<HomeIoT> {
                     });
                   }),
             ],
-          ),
+          ),/*
           Text(
             'Recevied message : ' +strFunc +'/'+ strTemp + '/' + strHumi,
-          ),
+          ),*/
         ],
       ),
     );
