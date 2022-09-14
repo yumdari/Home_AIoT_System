@@ -54,6 +54,7 @@
 22.09.13(윤건우) 푸쉬 기능 구현 완료, ALERT/0 : 외부인 인식, ALERT/1 : 상자 인식, ALERT/2 : 지문인식 에러   
 22.09.13(윤건우) CameraViewer 페이지에 yyyy년MM월dd일 hh:mm:ss 형식으로 날짜 및 시간 출력   
 22.09.13(염훈) Python Face Recognition Streaming   
+22.09.14(염훈) Python Socket Programming   
 
 ## 기술 스택
 

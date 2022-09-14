@@ -3,8 +3,16 @@ import cv2
 import time
 import threading
 from flask import Response, Flask
+from socket import *
 
-detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+ip = "10.10.141.27"
+port = 5000
+
+clientSocket = socket(AF_INET, SOCK_STREAM)		# 소켓 생성
+clientSocket.connect((ip,port))					# 서버와 연결
+
+#detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+detector = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
 # Image frame sent to the Flask object
 global video_frame
@@ -17,8 +25,12 @@ thread_lock = threading.Lock()
 # Create the Flask object for the application
 app = Flask(__name__)
 
+def socketSend():
+    clientSocket.send("detected\n".encode("utf-8"))
+
 def captureFrames():
     global video_frame, thread_lock
+    socketFlag = 0
 
     # Video capturing from OpenCV
     video_capture = cv2.VideoCapture(0)
@@ -27,29 +39,22 @@ def captureFrames():
         return_key, frame = video_capture.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = detector.detectMultiScale(gray, 1.3, 5)
+        
         for (x, y, w, h) in faces:
+            socketFlag = 1
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            if(socketFlag):
+                socketSend()
         if not return_key:
             break
             
         with thread_lock:
             video_frame = frame.copy()
         
-        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #faces = detector.detectMultiScale(gray, 1.3, 5)
-        #for (x, y, w, h) in faces:
-            #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-
-        # Create a copy of the frame and store it in the global variable,
-        # with thread safe access
-        #with thread_lock:
-            #video_frame = frame.copy()
-        
         key = cv2.waitKey(30) & 0xff
         if key == 27:
             break
-
+    
     video_capture.release()
         
 def encodeFrame():
