@@ -56,6 +56,7 @@
 22.09.13(염훈) Python Face Recognition Streaming   
 22.09.14(염훈) Python Socket Programming   
 22.09.14(손혜수) box object detectin   
+22.09.14(염훈) Image Processing Code Integration(Object, Face, Socket, Streaming)
 
 ## 기술 스택
 
