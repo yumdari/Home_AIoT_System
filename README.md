@@ -59,6 +59,7 @@
 22.09.14(손혜수) box object detection   
 22.09.14(염훈) Image Processing Code Integration(Object, Face, Socket, Streaming)   
 22.09.15(염훈) send socket message optimization   
+22.09.15(민동재) ESP32(도어락), Arduino Pro Mini(Sensor&Actuator), Linux Server(RaspberryPi) 최종 구현 
 
 ## 기술 스택
 
