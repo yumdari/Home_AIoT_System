@@ -59,7 +59,8 @@
 22.09.14(손혜수) box object detection   
 22.09.14(염훈) Image Processing Code Integration(Object, Face, Socket, Streaming)   
 22.09.15(염훈) send socket message optimization   
-22.09.15(민동재) ESP32(도어락), Arduino Pro Mini(Sensor&Actuator), Linux Server(RaspberryPi) 최종 구현 
+22.09.15(민동재) ESP32(도어락), Arduino Pro Mini(Sensor&Actuator), Linux Server(RaspberryPi) 최종 구현   
+22.09.15(윤건우) LED 조절 게이지 포인터 생성   
 
 ## 기술 스택
 

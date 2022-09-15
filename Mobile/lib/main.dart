@@ -3,11 +3,6 @@ import 'CameraViewer.dart';
 import 'HomeIoT.dart';
 import 'DataPage.dart';
 
-
-import 'package:tcp_socket_connection/tcp_socket_connection.dart';
-
-import 'package:flutter_mjpeg/flutter_mjpeg.dart';
-
 void main() {
   runApp(const MyApp());
 }
