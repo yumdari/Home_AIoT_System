@@ -55,8 +55,9 @@
 22.09.13(윤건우) CameraViewer 페이지에 yyyy년MM월dd일 hh:mm:ss 형식으로 날짜 및 시간 출력   
 22.09.13(염훈) Python Face Recognition Streaming   
 22.09.14(염훈) Python Socket Programming   
-22.09.14(손혜수) box object detectin   
-22.09.14(염훈) Image Processing Code Integration(Object, Face, Socket, Streaming)
+22.09.14(손혜수) box object detection   
+22.09.14(염훈) Image Processing Code Integration(Object, Face, Socket, Streaming)   
+22.09.15(염훈) send socket message optimization   
 
 ## 기술 스택
 

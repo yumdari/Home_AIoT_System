@@ -8,10 +8,30 @@ from socket import *
 lowerBound = np.array([20, 100, 100])
 upperBound = np.array([40, 255, 255])
 
-ip = "10.10.141.27"
+#ip = "10.10.141.27"
+ip = "10.10.141.217"
 port = 5000
 clientSocket = socket(AF_INET, SOCK_STREAM)		# 소켓 생성
 clientSocket.connect((ip,port))					# 서버와 연결
+#global preFlagFace
+#global preFlagBox
+preFlagFace = 0
+preFlagBox = 0
+
+# Box check
+isBoxHere = 0
+sentMsgBox = 0
+
+boxOkCnt = 0
+boxNoCnt = 0
+
+# Face Check
+faceFlag = 0
+sentMsgface = 0
+
+faceOkCnt = 0
+faceNoCnt = 0
+
 
 #detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 detector = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
@@ -37,10 +57,28 @@ def captureFrames():
     global video_frame, thread_lock
     socketFlagFace = 0
     socketFlagBox = 0
+    global preFlagFace
+    global preFlagBox
+
+
+    # TEst
+    global isBoxHere
+    global sentMsgBox
+
+    global boxOkCnt
+    global boxNoCnt
+  
+
+    global faceFlag
+    global sentMsgface
+
+    global faceOkCnt
+    global faceNoCnt
+
     
     # Video capturing from OpenCV
     video_capture = cv2.VideoCapture(0)
-
+    count = 0
     while True and video_capture.isOpened():
     
         return_key, frame = video_capture.read()
@@ -57,27 +95,57 @@ def captureFrames():
         
         contours, _ = cv2.findContours(result2, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         if len(contours) > 0:
+            socketFlagBox = 1
             for i in range(len(contours)):
                 area = cv2.contourArea(contours[i]) 
                 if area > 10000:  
+                    #socketFlagBox = 1
                     rect = cv2.minAreaRect(contours[i])
                     box = cv2.boxPoints(rect) 
                     box = np.int0(box) 
                     cv2.drawContours(frame, [box], 0, (0, 255, 0), 4)
- 
-        k = cv2.waitKey(1) & 0xFF
-        if len(contours) > 3:
-            socketFlagBox = 1
-            socketFlageFace = 0
-            if(socketFlagBox):
-                socketSendBox()
+                    if not (sentMsgBox):
+                            socketSendBox()
+                            sentMsgBox = 1
+                            #isBoxHere = 1
+                            boxOkCnt+= 1
+                    else:
+                        boxOkCnt+= 1
+
+                    if(boxOkCnt % 1000 == 0):
+                        isBoxHere = 1
+
+                            
+                    #if(preFlagBox!=socketFlagBox):
+                    #    socketSendBox()
+                else:
+                    boxNoCnt+= 1
+                    if(boxNoCnt % 1000 == 0):
+                        isBoxHere = 0
+                        sentMsgBox = 0
+                    #socketFlagBox = 0
+
+        #k = cv2.waitKey(1) & 0xFF
             
         for (x, y, w, h) in faces:
             socketFlagFace = 1
-            socketFlageBox = 0
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            if(socketFlagFace):
+            if not (sentMsgface):
                 socketSendFace()
+                sentMsgface = 1
+                faceOkCnt+=1
+            else:
+                faceOkCnt+=1
+
+            if(faceOkCnt % 100 == 0):
+                faceFlag = 1
+
+        else:
+            faceNoCnt+=1
+            if(faceNoCnt % 100 == 0):
+                faceFlag = 0
+                sentMsgface = 0
+
         if not return_key:
             break
             
@@ -87,8 +155,12 @@ def captureFrames():
         key = cv2.waitKey(30) & 0xff
         if key == 27:
             break
-    test = 0
+        preFlagFace = socketFlagFace
+        preFlagBox = socketFlagBox    
     video_capture.release()
+ 
+    
+    print('%d'% preFlagBox)
         
 def encodeFrame():
     global thread_lock
