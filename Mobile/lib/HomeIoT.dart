@@ -281,6 +281,13 @@ class _HomeIoTState extends State<HomeIoT> {
                         onValueChangeEnd: handlePointerValueChangedEndA, // 드래깅 끝나면 함수 call
                         onValueChanged: handlePointerValueChangedA, // 게이지 값 변경마다 함수 call
                         enableDragging: true, // 드래깅 값 조정 가능
+                      ),
+                      MarkerPointer(
+                        value: shapePointerValueA,
+                        markerWidth: 20,
+                        markerHeight: 20,
+                        markerType: MarkerType.circle,
+                        color: const Color(0xFF00A8B5)
                       )
                     ], annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
@@ -325,6 +332,13 @@ class _HomeIoTState extends State<HomeIoT> {
                         onValueChangeEnd: handlePointerValueChangedEndB,
                         onValueChanged: handlePointerValueChangedB,
                         enableDragging: true,
+                      ),
+                      MarkerPointer(
+                          value: shapePointerValueB,
+                          markerWidth: 20,
+                          markerHeight: 20,
+                          markerType: MarkerType.circle,
+                          color: const Color(0xFF00A8B5)
                       )
                     ], annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
@@ -369,6 +383,13 @@ class _HomeIoTState extends State<HomeIoT> {
                         onValueChangeEnd: handlePointerValueChangedEndC,
                         onValueChanged: handlePointerValueChangedC,
                         enableDragging: true,
+                      ),
+                      MarkerPointer(
+                          value: shapePointerValueC,
+                          markerWidth: 20,
+                          markerHeight: 20,
+                          markerType: MarkerType.circle,
+                          color: const Color(0xFF00A8B5)
                       )
                     ], annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
