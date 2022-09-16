@@ -2,7 +2,7 @@
 
 ## 기능
 
-<img src="https://user-images.githubusercontent.com/91246353/190538020-358fd166-90cd-49da-8bb3-5d59069eacd6.png" width="500" height="400"/>
+<img src="https://user-images.githubusercontent.com/91246353/190538243-c0b08c4c-17d0-461a-9e10-ac68305dc8f5.png" width="500" height="400"/>
 
 ## 22 IoT SW 공모전 3팀
 
