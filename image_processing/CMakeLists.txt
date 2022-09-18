@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.10.2)
-project(image_processing)
-find_package(OpenCV REQUIRED)
-add_executable(image_processing src/main.cpp)
-target_link_libraries(image_processing ${OpenCV_LIBS})
