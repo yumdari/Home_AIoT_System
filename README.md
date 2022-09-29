@@ -6,12 +6,12 @@
 
 ## 22 IoT SW 공모전 3팀
 
-|이름|역할|
-|---|--------|
-|염훈|팀장, Git, H/W, OpenCV|
-|윤건우|부팀장, MCU, APP|
-|민동재|MCU, Server, DB|
-|손혜수|OpenCV, Streaming Server|
+|이름|역할|담당|
+|---|---|--------|
+|염  훈|팀  장|Git, H/W, OpenCV|
+|윤건우|부팀장|MCU, APP|
+|민동재|팀  원|MCU, Server, DB|
+|손혜수|팀  원|OpenCV, Streaming Server|
 
 ##  개발 일지
 22.06.13(염훈) Ubuntu 20.04 ROS Noetic에서 cyglidar 미지원 -> Ubuntu 18.04 ROS Melodic   
